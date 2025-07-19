@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abei Nathan S K - Data Analyst</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --bg-color: #121212;
+            --primary-text-color: #E0E0E0;
+            --secondary-text-color: #a0a0a0;
+            --card-bg-color: #1E1E1E;
+            --accent-color: #0d6efd;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            line-height: 1.7;
+            /* Hide the default cursor */
+            cursor: none;
+        }
+
+        /* --- Custom Cursor --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent-color);
+            transition: transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+        }
+        
+        /* Cursor grow effect on hover */
+        .cursor-grow {
+            transform: scale(1.5);
+            border: 2px solid var(--accent-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+        
+        /* Make links and buttons use the custom cursor */
+        a, button, .project-card, .timeline-content, .skill-category {
+            cursor: none;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* --- Animation Classes --- */
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+        }
+
+        #hero .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--accent-color);
+            height: 3rem; 
+        }
+        
+        #hero .subtitle .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.8rem;
+            background-color: var(--accent-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        .social-links { margin-top: 30px; }
+        .social-links a {
+            color: var(--secondary-text-color);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* --- Shared Section Styles --- */
+        #about, #skills, #experience, #projects, #contact {
+            border-bottom: 1px solid var(--border-color);
+        }
+        #contact { border-bottom: none; }
+        
+        /* --- About Section --- */
+        .about-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg-color);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .about-box p {
+            font-size: 1.1rem;
+            color: var(--secondary-text-color);
+        }
+        
+        /* --- Skills Section --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .skill-category h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .skill-pill {
+            background-color: #333;
+            color: var(--primary-text-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+        }
+
+        /* --- Experience Section (Timeline) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -11.5px;
+            background-color: var(--bg-color);
+            border: 3px solid var(--accent-color);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item.right::after { left: -8.5px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-card-content { flex-grow: 1; }
+        
+        .project-links { margin-top: 20px; }
+        .project-links a { color: var(--secondary-text-color); margin-right: 20px; font-size: 1.4rem; }
+        .project-links a:hover { color: var(--accent-color); }
+
+        /* --- Contact Section --- */
+        #contact { text-align: center; }
+        #contact p { max-width: 600px; margin: 0 auto 40px; }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover { background-color: #0b5ed7; transform: scale(1.05); }
+
+        /* --- Footer --- */
+        footer { padding: 30px 20px; text-align: center; color: var(--secondary-text-color); }
+        
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    
+    <div class="cursor-outline"></div>
+    <div class="cursor-dot"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">Abei Nathan S K</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <h1 class="hidden">Abei Nathan S K</h1>
+        <p class="subtitle"><span id="typewriter"></span><span class="cursor"></span></p>
+        <div class="social-links hidden">
+            <a href="https://www.linkedin.com/in/abeinathan" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:skabeinathan@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="about">
+            <h2 class="hidden">About Me</h2>
+            <div class="about-box hidden">
+                <p>
+                    A final-year MBA candidate in Business Analytics at SRM Institute of Science and Technology, I am passionate about transforming raw data into strategic assets. My goal is to leverage my analytical acumen in a challenging Data Analyst role to solve complex business problems and drive data-informed decisions.
+                </p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="hidden">My Toolkit</h2>
+            <div class="skills-container">
+                <div class="skill-category hidden">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Power BI</span>
+                        <span class="skill-pill">MS Excel</span>
+                        <span class="skill-pill">Data Analysis</span>
+                        <span class="skill-pill">Statistical Analysis</span>
+                        <span class="skill-pill">MATLAB</span>
+                        <span class="skill-pill">SQL (Basic)</span>
+                    </div>
+                </div>
+                <div class="skill-category hidden">
+                    <h3>Business & Management Skills</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Business Intelligence</span>
+                        <span class="skill-pill">Problem Solving</span>
+                        <span class="skill-pill">Leadership</span>
+                        <span class="skill-pill">Process Improvement</span>
+                        <span class="skill-pill">Project Management</span>
+                        <span class="skill-pill">Communication</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="hidden">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item right hidden">
+                    <div class="timeline-content">
+                        <h3>Data Analyst</h3>
+                        <em>Necco Tools | Jun 2025 - Present</em>
+                        <p>Utilizing statistical tools to improve process accuracy by 15% and applying Six Sigma to reduce variations by 20%.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left hidden">
+                    <div class="timeline-content">
+                        <h3>Campus Ambassador</h3>
+                        <em>IIT Delhi | Jan 2025 - Feb 2025</em>
+                        <p>Led a 10-person team to boost event turnout by 25%. Increased marketing outreach by 30% through engagement data analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right hidden">
+                    <div class="timeline-content">
+                        <h3>Store Management Intern</h3>
+                        <em>Salem Steel Plant (SAIL) | Jul 2020</em>
+                        <p>Coordinated a team to make material retrieval 20% faster and boosted overall process efficiency by 15% through data analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="hidden">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card hidden">
+                    <div class="project-card-content">
+                        <h3>Quality Control Enhancement</h3>
+                        <p>Applied Six Sigma and statistical tools at Necco Tools to streamline operations, reducing process variations by 20%.</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        <a href="#" aria-label="Source Code"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-card hidden">
+                    <div class="project-card-content">
+                        <h3>Management Efficiency Study</h3>
+                        <p>Analysis at Radission Groups that improved communication by 30% and boosted employee engagement by 25%.</p>
+                    </div>
+                    <div class="project-links">
+                         <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card hidden">
+                    <div class="project-card-content">
+                        <h3>Inventory & Store Management</h3>
+                        <p>At Salem Steel Plant, improved inventory organization for 500+ items, resulting in 20% faster material retrieval.</p>
+                    </div>
+                     <div class="project-links">
+                        <a href="#" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+             <h2 class="hidden">Get In Touch</h2>
+             <p class="hidden">I'm actively seeking full-time Data Analyst opportunities and would love to hear from you. Let's connect!</p>
+             <a href="Abei Nathan S K - Resume-1.pdf" class="btn hidden" download>Download Resume</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Abei Nathan S K. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- Animate on Scroll ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // --- Typewriter Effect ---
+        const typewriterElement = document.getElementById('typewriter');
+        const phrases = ["Aspiring Data Analyst", "MBA Candidate", "Data-Driven Problem Solver"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, 500);
+                    return;
+                }
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000);
+                    return;
+                }
+            }
+            const typingSpeed = isDeleting ? 50 : 120;
+            setTimeout(type, typingSpeed);
+        }
+
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .timeline-content, .skill-category');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseover', () => {
+                cursorOutline.classList.add('cursor-grow');
+            });
+            el.addEventListener('mouseout', () => {
+                cursorOutline.classList.remove('cursor-grow');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
