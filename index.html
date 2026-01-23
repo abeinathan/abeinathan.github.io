@@ -10,14 +10,17 @@
 </head>
 <body>
 
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <nav>
         <div class="logo">Abei Nathan S K</div>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" class="hover-target">About</a></li>
+            <li><a href="#projects" class="hover-target">Projects</a></li>
+            <li><a href="#experience" class="hover-target">Experience</a></li>
+            <li><a href="#certifications" class="hover-target">Certifications</a></li>
+            <li><a href="#contact" class="hover-target">Contact</a></li>
         </ul>
     </nav>
 
@@ -26,8 +29,8 @@
             <h1>Data Analyst & <br> MBA Student</h1>
             <p>Transforming complex data into actionable business strategies. Specialized in Python, Power BI, and Predictive Modeling.</p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn primary">View Work</a>
-                <a href="Abei Nathan S K - Resume-1.pdf" class="btn secondary" target="_blank">Download Resume</a>
+                <a href="#projects" class="btn primary hover-target">View Work</a>
+                <a href="Abei Nathan S K - Resume-1.pdf" class="btn secondary hover-target" target="_blank">Download Resume</a>
             </div>
         </div>
     </header>
@@ -48,34 +51,24 @@
     <section id="projects" class="container">
         <h2 class="section-title">Selected Projects</h2>
         <div class="grid">
-            
-            <div class="card">
-                <h3>Predictive Analysis of Manufacturing Defects</h3>
+            <div class="card hover-target">
+                <h3>Predictive Analysis of Defects</h3>
                 <span class="subtitle">Necco Tools | 2025</span>
-                <p>Performed Exploratory Data Analysis (EDA) using Python to identify defect patterns. Developed a predictive model that improved process accuracy by 15% and reduced process variations by 20% using Six Sigma methodologies.</p>
-                <div class="tags">
-                    <span>Python</span><span>Predictive Modeling</span><span>Six Sigma</span>
-                </div>
+                <p>Performed EDA using Python to identify defect patterns. Developed a predictive model that improved process accuracy by 15% using Six Sigma methodologies.</p>
+                <div class="tags"><span>Python</span><span>Predictive Modeling</span><span>Six Sigma</span></div>
             </div>
-
-            <div class="card">
+            <div class="card hover-target">
                 <h3>Store Management Optimization</h3>
-                <span class="subtitle">Salem Steel Plant (SAIL) | 2020</span>
-                <p>Analyzed inventory data for 500+ items, resulting in 20% faster material retrieval. Conducted operational analysis to enhance materials management efficiency by 15%.</p>
-                <div class="tags">
-                    <span>Data Analysis</span><span>Operations</span><span>Inventory Mgmt</span>
-                </div>
+                <span class="subtitle">Salem Steel Plant | 2020</span>
+                <p>Analyzed inventory data for 500+ items, resulting in 20% faster material retrieval. Conducted operational analysis to enhance efficiency.</p>
+                <div class="tags"><span>Data Analysis</span><span>Operations</span><span>Inventory</span></div>
             </div>
-
-            <div class="card">
+            <div class="card hover-target">
                 <h3>Performance Management System</h3>
                 <span class="subtitle">Radisson Groups | 2019</span>
-                <p>Streamlined reporting lines which improved communication efficiency by 30%. Boosted employee engagement by 25% through targeted morale-building initiatives.</p>
-                <div class="tags">
-                    <span>HR Analytics</span><span>Management</span><span>Strategy</span>
-                </div>
+                <p>Streamlined reporting lines improving communication by 30%. Boosted employee engagement by 25% through targeted initiatives.</p>
+                <div class="tags"><span>HR Analytics</span><span>Management</span><span>Strategy</span></div>
             </div>
-
         </div>
     </section>
 
@@ -83,18 +76,30 @@
         <h2 class="section-title">Experience</h2>
         <div class="timeline">
             
-            <div class="timeline-item">
-                <div class="date">Jan 2025 - Feb 2025</div>
-                <div class="content">
-                    <h3>Campus Ambassador</h3>
-                    <span class="company">IIT Delhi</span>
-                    <p>Led a 10-person team to execute campus events, boosting student turnout. Analyzed engagement data to increase outreach by 30%.</p>
+            <div class="timeline-item hover-target">
+                <div class="timeline-icon"><i class="fas fa-tools"></i></div>
+                <div class="timeline-content">
+                    <span class="date">June 2025 - Aug 2025</span>
+                    <h3>Data Analyst Intern</h3>
+                    <span class="company">Necco Tools, Chennai</span>
+                    <p>Performed exploratory data analysis (EDA) using Python. Developed predictive models for manufacturing defects, improving process accuracy by 15%.</p>
                 </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="date">July 2020</div>
-                <div class="content">
+            <div class="timeline-item hover-target">
+                <div class="timeline-icon"><i class="fas fa-university"></i></div>
+                <div class="timeline-content">
+                    <span class="date">Jan 2025 - Feb 2025</span>
+                    <h3>Campus Ambassador</h3>
+                    <span class="company">IIT Delhi</span>
+                    <p>Led a 10-person team to execute campus events. Analyzed engagement data to increase outreach by 30% and boosted student turnout.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item hover-target">
+                <div class="timeline-icon"><i class="fas fa-industry"></i></div>
+                <div class="timeline-content">
+                    <span class="date">July 2020</span>
                     <h3>Intern (Finance & Materials)</h3>
                     <span class="company">Salem Steel Plant (SAIL)</span>
                     <p>Coordinated team schedules and performed deep-dive analysis on store inventory and finance department workflows.</p>
@@ -106,26 +111,109 @@
 
     <section id="certifications" class="container">
         <h2 class="section-title">Certifications</h2>
-        <ul class="cert-list">
-            <li><strong>Microsoft Power BI</strong> - PwC (Forage)</li>
-            <li><strong>Gen AI Simulation</strong> - BCG X (Forage)</li>
-            <li><strong>Data Analytics Job Simulation</strong> - Accenture (Forage)</li>
-            <li><strong>Statistics for Data Science</strong> - Great Learning</li>
-            <li><strong>Face Recognition App using Python</strong> - GUVI</li>
-            <li><strong>Business Analytics Basics</strong> - MindLuster</li>
-        </ul>
+        <p style="margin-bottom:20px; color: #666; text-align:center;">Click on a certificate to see details.</p>
+        <div class="cert-grid">
+            <div class="cert-item hover-target" onclick="openModal('Microsoft Power BI', 'PwC (Forage)', 'Completed a job simulation creating Power BI dashboards for KPIs and business trends.')">
+                <i class="fas fa-chart-bar"></i>
+                <span>Microsoft Power BI</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Statistics for Data Science', 'Great Learning', 'Covered fundamental statistical concepts: probability, hypothesis testing, and regression analysis.')">
+                <i class="fas fa-calculator"></i>
+                <span>Statistics for Data Science</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Data Analytics Job Simulation', 'Accenture (Forage)', 'Practical experience in data cleaning, modeling, and visualization to uncover insights.')">
+                <i class="fas fa-laptop-code"></i>
+                <span>Data Analytics Job Simulation</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('PostgreSQL for Beginners', 'MindLuster', 'Learned the fundamentals of relational databases, writing SQL queries, and managing data.')">
+                <i class="fas fa-database"></i>
+                <span>PostgreSQL for Beginners</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Gen AI Simulation', 'BCG X (Forage)', 'Explored Generative AI applications in business contexts and prompt engineering.')">
+                <i class="fas fa-robot"></i>
+                <span>Gen AI Simulation</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Face Recognition App', 'GUVI', 'Built a face recognition application using Python and OpenCV.')">
+                <i class="fas fa-id-badge"></i>
+                <span>Face Recognition App (Python)</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Excel VBA for Beginners', 'Great Learning', 'Automated Excel tasks using VBA macros to improve spreadsheet efficiency.')">
+                <i class="fas fa-file-excel"></i>
+                <span>Excel VBA for Beginners</span>
+            </div>
+            <div class="cert-item hover-target" onclick="openModal('Matlab Onramp', 'Mathworks', 'Introduction to data analysis and visualization using Matlab.')">
+                <i class="fas fa-code"></i>
+                <span>Matlab Onramp</span>
+            </div>
+        </div>
     </section>
 
     <section id="contact" class="footer">
         <h2>Let's Connect</h2>
         <p>Open for Data Analyst and Business Analyst roles.</p>
         <div class="social-links">
-            <a href="mailto:skabeinathan@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/abeinathan" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/abeinathan" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="mailto:skabeinathan@gmail.com" class="hover-target"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.linkedin.com/in/abeinathan" target="_blank" class="hover-target"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/abeinathan" target="_blank" class="hover-target"><i class="fab fa-github"></i> GitHub</a>
         </div>
         <p class="copyright">© 2026 Abei Nathan S K. All rights reserved.</p>
     </section>
 
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Certificate Name</h3>
+            <p id="modalProvider" class="modal-subtitle">Provider</p>
+            <p id="modalDesc">Description goes here...</p>
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const links = document.querySelectorAll('.hover-target');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+                follower.classList.add('active');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                follower.classList.remove('active');
+            });
+        });
+
+        // Modal Logic
+        const modal = document.getElementById("certModal");
+        
+        function openModal(title, provider, desc) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalProvider").innerText = provider;
+            document.getElementById("modalDesc").innerText = desc;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
