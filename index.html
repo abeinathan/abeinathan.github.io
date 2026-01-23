@@ -37,7 +37,8 @@
 
     <div class="skills-ticker">
         <div class="ticker-content">
-            <span>Python</span> • <span>SQL</span> • <span>Power BI</span> • <span>Statistical Analysis</span> • <span>Machine Learning</span> • <span>EDA</span> • <span>MS Excel</span> • <span>Problem Solving</span> • <span>Market Analysis</span> • <span>Python</span> • <span>SQL</span> • <span>Power BI</span>
+            <span>Python</span> • <span>SQL</span> • <span>Power BI</span> • <span>Statistical Analysis</span> • <span>Machine Learning</span> • <span>EDA</span> • <span>MS Excel</span> • <span>Problem Solving</span> • <span>Market Analysis</span> • 
+            <span>Python</span> • <span>SQL</span> • <span>Power BI</span> • <span>Statistical Analysis</span> • <span>Machine Learning</span> • <span>EDA</span> • <span>MS Excel</span> • <span>Problem Solving</span> • <span>Market Analysis</span> •
         </div>
     </div>
 
@@ -149,14 +150,16 @@
     </section>
 
     <section id="contact" class="footer">
-        <h2>Let's Connect</h2>
-        <p>Open for Data Analyst and Business Analyst roles.</p>
-        <div class="social-links">
-            <a href="mailto:skabeinathan@gmail.com" class="hover-target"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/abeinathan" target="_blank" class="hover-target"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/abeinathan" target="_blank" class="hover-target"><i class="fab fa-github"></i> GitHub</a>
+        <div class="footer-content">
+            <h2>Let's Connect</h2>
+            <p>I am currently open for Data Analyst and Business Analyst roles.</p>
+            <div class="social-links">
+                <a href="mailto:skabeinathan@gmail.com" class="hover-target"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.linkedin.com/in/abeinathan" target="_blank" class="hover-target"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/abeinathan" target="_blank" class="hover-target"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+            <p class="copyright">© 2026 Abei Nathan S K. All rights reserved.</p>
         </div>
-        <p class="copyright">© 2026 Abei Nathan S K. All rights reserved.</p>
     </section>
 
     <div id="certModal" class="modal">
@@ -169,7 +172,6 @@
     </div>
 
     <script>
-        // Custom Cursor Logic
         const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
         const links = document.querySelectorAll('.hover-target');
@@ -177,7 +179,6 @@
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
             setTimeout(() => {
                 follower.style.left = e.clientX + 'px';
                 follower.style.top = e.clientY + 'px';
@@ -195,25 +196,15 @@
             });
         });
 
-        // Modal Logic
         const modal = document.getElementById("certModal");
-        
         function openModal(title, provider, desc) {
             document.getElementById("modalTitle").innerText = title;
             document.getElementById("modalProvider").innerText = provider;
             document.getElementById("modalDesc").innerText = desc;
             modal.style.display = "flex";
         }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        function closeModal() { modal.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
     </script>
 </body>
 </html>
