@@ -5,208 +5,588 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abei Nathan S K | Data Analyst Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <!-- Noise texture overlay -->
+    <div class="noise-overlay"></div>
 
-    <nav>
-        <div class="logo">Abei Nathan S K</div>
-        <ul class="nav-links">
-            <li><a href="#about" class="hover-target">About</a></li>
-            <li><a href="#projects" class="hover-target">Projects</a></li>
-            <li><a href="#experience" class="hover-target">Experience</a></li>
-            <li><a href="#certifications" class="hover-target">Certifications</a></li>
-            <li><a href="#contact" class="hover-target">Contact</a></li>
-        </ul>
+    <!-- Ambient blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">
+                <span class="logo-dot"></span>
+                Abei Nathan
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" data-hover="About">About</a></li>
+                <li><a href="#projects" data-hover="Work">Projects</a></li>
+                <li><a href="#experience" data-hover="Journey">Experience</a></li>
+                <li><a href="#certifications" data-hover="Certs">Certifications</a></li>
+                <li><a href="#contact" data-hover="Talk">Contact</a></li>
+            </ul>
+            <a href="AbeiNathanSK_resume.pdf" class="nav-cta" target="_blank">
+                Resume <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
     </nav>
 
+    <!-- HERO -->
     <header class="hero">
-        <div class="hero-content">
-            <h1>Data Analyst & <br> MBA Student</h1>
-            <p>Transforming complex data into actionable business strategies. Specialized in Python, Power BI, and Predictive Modeling.</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn primary hover-target">View Work</a>
-                <a href="AbeiNathanSK_resume.pdf" class="btn secondary hover-target" target="_blank">Download Resume</a>
+        <div class="hero-inner">
+            <div class="hero-badge reveal-up" style="--delay: 0s">
+                <span class="badge-dot"></span>
+                Open to opportunities · Chennai, TN
             </div>
+            <h1 class="hero-title">
+                <span class="line reveal-up" style="--delay: 0.1s">Data Analyst</span>
+                <span class="line reveal-up ampersand" style="--delay: 0.2s">&amp;</span>
+                <span class="line reveal-up" style="--delay: 0.3s">MBA Candidate</span>
+            </h1>
+            <p class="hero-sub reveal-up" style="--delay: 0.4s">
+                Turning messy datasets into crisp decisions. Python · SQL · Power BI · ML.
+            </p>
+            <div class="hero-actions reveal-up" style="--delay: 0.5s">
+                <a href="#projects" class="btn-primary magnetic">
+                    <span>View Work</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn-ghost magnetic">Let's Talk</a>
+            </div>
+            <div class="hero-stats reveal-up" style="--delay: 0.6s">
+                <div class="stat">
+                    <strong>9.07</strong><span>CGPA · MBA</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>3+</strong><span>Internships</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>8</strong><span>Certifications</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
         </div>
     </header>
 
-    <div class="skills-ticker">
-        <div class="ticker-content">
-            <span>Python</span> • <span>SQL</span> • <span>Power BI</span> • <span>Statistical Analysis</span> • <span>Machine Learning</span> • <span>EDA</span> • <span>MS Excel</span> • <span>Problem Solving</span> • <span>Market Analysis</span> • 
-            <span>Python</span> • <span>SQL</span> • <span>Power BI</span> • <span>Statistical Analysis</span> • <span>Machine Learning</span> • <span>EDA</span> • <span>MS Excel</span> • <span>Problem Solving</span> • <span>Market Analysis</span> •
+    <!-- SKILLS TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-track">
+            <div class="ticker-set">
+                <span>Python</span><span class="sep">◆</span>
+                <span>SQL</span><span class="sep">◆</span>
+                <span>Power BI</span><span class="sep">◆</span>
+                <span>Machine Learning</span><span class="sep">◆</span>
+                <span>Pandas</span><span class="sep">◆</span>
+                <span>NumPy</span><span class="sep">◆</span>
+                <span>Scikit-learn</span><span class="sep">◆</span>
+                <span>EDA</span><span class="sep">◆</span>
+                <span>PostgreSQL</span><span class="sep">◆</span>
+                <span>MS Excel</span><span class="sep">◆</span>
+                <span>Six Sigma</span><span class="sep">◆</span>
+                <span>Statistical Modeling</span><span class="sep">◆</span>
+            </div>
+            <div class="ticker-set" aria-hidden="true">
+                <span>Python</span><span class="sep">◆</span>
+                <span>SQL</span><span class="sep">◆</span>
+                <span>Power BI</span><span class="sep">◆</span>
+                <span>Machine Learning</span><span class="sep">◆</span>
+                <span>Pandas</span><span class="sep">◆</span>
+                <span>NumPy</span><span class="sep">◆</span>
+                <span>Scikit-learn</span><span class="sep">◆</span>
+                <span>EDA</span><span class="sep">◆</span>
+                <span>PostgreSQL</span><span class="sep">◆</span>
+                <span>MS Excel</span><span class="sep">◆</span>
+                <span>Six Sigma</span><span class="sep">◆</span>
+                <span>Statistical Modeling</span><span class="sep">◆</span>
+            </div>
         </div>
     </div>
 
-    <section id="about" class="container">
-        <h2 class="section-title">About Me</h2>
-        <p class="bio">
-            I am currently pursuing an <strong>MBA in Business Analytics</strong> at SRM Institute of Science and Technology (9.12 CGPA). With a background in Commerce and a passion for data, I bridge the gap between technical analysis and business strategy. My interests extend to open-source projects, automotive technology, and gaming.
-        </p>
-    </section>
-
-    <section id="projects" class="container">
-        <h2 class="section-title">Selected Projects</h2>
-        <div class="grid">
-            <div class="card hover-target">
-                <h3>Predictive Analysis of Defects</h3>
-                <span class="subtitle">Necco Tools | 2025</span>
-                <p>Performed EDA using Python to identify defect patterns. Developed a predictive model that improved process accuracy by 15% using Six Sigma methodologies.</p>
-                <div class="tags"><span>Python</span><span>Predictive Modeling</span><span>Six Sigma</span></div>
-            </div>
-            <div class="card hover-target">
-                <h3>Store Management Optimization</h3>
-                <span class="subtitle">Salem Steel Plant | 2020</span>
-                <p>Analyzed inventory data for 500+ items, resulting in 20% faster material retrieval. Conducted operational analysis to enhance efficiency.</p>
-                <div class="tags"><span>Data Analysis</span><span>Operations</span><span>Inventory</span></div>
-            </div>
-            <div class="card hover-target">
-                <h3>Performance Management System</h3>
-                <span class="subtitle">Radisson Groups | 2019</span>
-                <p>Streamlined reporting lines improving communication by 30%. Boosted employee engagement by 25% through targeted initiatives.</p>
-                <div class="tags"><span>HR Analytics</span><span>Management</span><span>Strategy</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-            
-            <div class="timeline-item hover-target">
-                <div class="timeline-icon"><i class="fas fa-tools"></i></div>
-                <div class="timeline-content">
-                    <span class="date">June 2025 - Aug 2025</span>
-                    <h3>Data Analyst Intern</h3>
-                    <span class="company">Necco Tools, Chennai</span>
-                    <p>Performed exploratory data analysis (EDA) using Python. Developed predictive models for manufacturing defects, improving process accuracy by 15%.</p>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">01 · About</div>
+            <h2 class="section-heading reveal-up">The person behind the data.</h2>
+            <div class="about-grid">
+                <div class="about-text reveal-up">
+                    <p>
+                        I'm a final-year <strong>MBA in Business Analytics</strong> student at SRMIST (9.07 CGPA), with a B.Com background that gives me a rare blend of financial fluency and technical depth. I don't just run models — I translate them into decisions that make sense to a boardroom.
+                    </p>
+                    <p style="margin-top: 1.2rem;">
+                        My work spans predictive modeling, EDA, dashboard design, and process optimization. Outside academics, I build Android apps, create LinkedIn data-carousel content, and obsess over clean, lossless audio.
+                    </p>
+                </div>
+                <div class="about-tags reveal-up" style="--delay: 0.15s">
+                    <div class="tag-pill">📊 Business Analytics</div>
+                    <div class="tag-pill">🤖 Machine Learning</div>
+                    <div class="tag-pill">📈 Power BI</div>
+                    <div class="tag-pill">🐍 Python</div>
+                    <div class="tag-pill">🗄️ SQL / PostgreSQL</div>
+                    <div class="tag-pill">📱 Android Dev</div>
+                    <div class="tag-pill">🎵 Hi-Fi Audio</div>
+                    <div class="tag-pill">✍️ Data Storytelling</div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="timeline-item hover-target">
-                <div class="timeline-icon"><i class="fas fa-university"></i></div>
-                <div class="timeline-content">
-                    <span class="date">Jan 2025 - Feb 2025</span>
-                    <h3>Campus Ambassador</h3>
-                    <span class="company">IIT Delhi</span>
-                    <p>Led a 10-person team to execute campus events. Analyzed engagement data to increase outreach by 30% and boosted student turnout.</p>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">02 · Projects</div>
+            <h2 class="section-heading reveal-up">Selected work. <span class="muted">Click any card.</span></h2>
+            <div class="flip-grid">
+
+                <!-- PROJECT 1 -->
+                <div class="flip-card reveal-up" style="--delay: 0s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">01</div>
+                            <div class="card-icon-wrap"><i class="fas fa-industry"></i></div>
+                            <h3>Predictive Defect Analysis</h3>
+                            <span class="card-meta">Necco Tools · 2025</span>
+                            <p>Identified variables correlated with manufacturing defects using EDA, achieving a 15% boost in process accuracy through predictive modeling.</p>
+                            <div class="card-tags">
+                                <span>Python</span><span>EDA</span><span>Predictive Modeling</span>
+                            </div>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i> Flip for details</div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">Predictive Defect Analysis</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><i class="fab fa-python"></i> <strong>Python</strong> — Core language for all scripting & analysis</li>
+                                <li><i class="fas fa-table"></i> <strong>Pandas & NumPy</strong> — Data wrangling and numerical ops</li>
+                                <li><i class="fas fa-chart-line"></i> <strong>Matplotlib / Seaborn</strong> — EDA visualizations</li>
+                                <li><i class="fas fa-brain"></i> <strong>Scikit-learn</strong> — Regression & classification models</li>
+                                <li><i class="fas fa-diagram-project"></i> <strong>Six Sigma (DMAIC)</strong> — Process improvement framework</li>
+                                <li><i class="fas fa-file-excel"></i> <strong>MS Excel</strong> — Reporting & dashboards</li>
+                            </ul>
+                            <div class="back-outcome">📈 15% process accuracy improvement</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 -->
+                <div class="flip-card reveal-up" style="--delay: 0.1s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">02</div>
+                            <div class="card-icon-wrap"><i class="fas fa-boxes-stacked"></i></div>
+                            <h3>Store Management Optimization</h3>
+                            <span class="card-meta">Salem Steel Plant (SAIL) · 2020</span>
+                            <p>Analyzed inventory data for 500+ items, achieving 20% faster material retrieval through deep operational analysis.</p>
+                            <div class="card-tags">
+                                <span>Data Analysis</span><span>Operations</span><span>Inventory</span>
+                            </div>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i> Flip for details</div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">Store Management Optimization</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><i class="fas fa-file-excel"></i> <strong>MS Excel</strong> — Inventory data analysis & pivot tables</li>
+                                <li><i class="fas fa-chart-bar"></i> <strong>Excel Charts</strong> — Visual reporting for department leads</li>
+                                <li><i class="fas fa-sitemap"></i> <strong>Process Mapping</strong> — Workflow bottleneck identification</li>
+                                <li><i class="fas fa-calculator"></i> <strong>Financial Accounting</strong> — Cost analysis of store operations</li>
+                                <li><i class="fas fa-file-alt"></i> <strong>Report Writing</strong> — Structured findings & recommendations</li>
+                            </ul>
+                            <div class="back-outcome">🚀 20% faster material retrieval</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div class="flip-card reveal-up" style="--delay: 0.2s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">03</div>
+                            <div class="card-icon-wrap"><i class="fas fa-users-gear"></i></div>
+                            <h3>Performance Management System</h3>
+                            <span class="card-meta">Radisson Groups · 2019</span>
+                            <p>Redesigned reporting lines and engagement initiatives, boosting communication efficiency by 30% and employee engagement by 25%.</p>
+                            <div class="card-tags">
+                                <span>HR Analytics</span><span>Management</span><span>Strategy</span>
+                            </div>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i> Flip for details</div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">Performance Management</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><i class="fas fa-chart-pie"></i> <strong>HR Analytics</strong> — KPI tracking & engagement metrics</li>
+                                <li><i class="fas fa-file-excel"></i> <strong>MS Excel</strong> — Performance data consolidation</li>
+                                <li><i class="fas fa-sitemap"></i> <strong>Org Chart Design</strong> — Reporting structure redesign</li>
+                                <li><i class="fas fa-comments"></i> <strong>Stakeholder Reporting</strong> — Presenting findings to HR management</li>
+                                <li><i class="fas fa-bullseye"></i> <strong>Strategy Frameworks</strong> — Engagement improvement planning</li>
+                            </ul>
+                            <div class="back-outcome">💬 30% comms efficiency · 25% engagement</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4 — MilkyWay Tracker -->
+                <div class="flip-card reveal-up" style="--delay: 0.3s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">04</div>
+                            <div class="card-icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
+                            <h3>MilkyWay Tracker</h3>
+                            <span class="card-meta">Personal Project · 2026</span>
+                            <p>A web-based tracking application built for a family member, leveraging Google AI Studio and deployed via GitHub Pages.</p>
+                            <div class="card-tags">
+                                <span>Python</span><span>Google AI</span><span>Web App</span>
+                            </div>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i> Flip for details</div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">MilkyWay Tracker</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><i class="fab fa-python"></i> <strong>Python / Flet</strong> — App framework for UI</li>
+                                <li><i class="fas fa-robot"></i> <strong>Google AI Studio</strong> — AI-powered features</li>
+                                <li><i class="fab fa-github"></i> <strong>GitHub Pages</strong> — Deployment & hosting</li>
+                                <li><i class="fas fa-mobile-alt"></i> <strong>Android APK</strong> — Mobile deployment</li>
+                                <li><i class="fas fa-database"></i> <strong>Local Storage</strong> — Lightweight data persistence</li>
+                            </ul>
+                            <div class="back-outcome">📱 Deployed · Family tracking tool</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">03 · Experience</div>
+            <h2 class="section-heading reveal-up">Where I've worked.</h2>
+            <div class="timeline">
+
+                <div class="tl-item reveal-up" style="--delay: 0s">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-tools"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">Jun – Aug 2025</span>
+                        <h3 class="tl-title">Data Analytics Intern</h3>
+                        <span class="tl-org">Necco Tools · Chennai, India</span>
+                        <p class="tl-desc">Ran EDA in Python on manufacturing data. Built predictive models for defect forecasting. Presented visual reports to the quality team, driving a 15% accuracy improvement.</p>
+                        <div class="tl-chips">
+                            <span>Python</span><span>Scikit-learn</span><span>EDA</span><span>Dashboarding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal-up" style="--delay: 0.1s">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-university"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">Jan – Feb 2025</span>
+                        <h3 class="tl-title">Campus Ambassador · Team Lead</h3>
+                        <span class="tl-org">IIT Delhi · Remote</span>
+                        <p class="tl-desc">Led a 10-member team to run campus events. Analyzed engagement data to optimize content strategy — increased outreach by 30% and student turnout by 25%.</p>
+                        <div class="tl-chips">
+                            <span>Leadership</span><span>Engagement Analytics</span><span>Strategy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal-up" style="--delay: 0.2s">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-industry"></i></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">July 2020</span>
+                        <h3 class="tl-title">Intern — Finance & Materials</h3>
+                        <span class="tl-org">Salem Steel Plant (SAIL) · Salem, India</span>
+                        <p class="tl-desc">Streamlined store inventory for 500+ items, cutting retrieval time by 20%. Deep-dive analysis across finance and materials management departments.</p>
+                        <div class="tl-chips">
+                            <span>Inventory Analysis</span><span>Financial Accounting</span><span>Process Mapping</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">04 · Certifications</div>
+            <h2 class="section-heading reveal-up">Proof of learning. <span class="muted">Click any card.</span></h2>
+            <div class="cert-flip-grid">
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-chart-bar"></i></div>
+                            <h4>Microsoft Power BI</h4>
+                            <span class="cert-issuer">PwC via Forage</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Power BI</h4>
+                            <p>Built interactive KPI dashboards for real business scenarios. Covered data modeling, DAX formulas, report design, and executive storytelling.</p>
+                            <div class="back-tools"><span>Power BI Desktop</span><span>DAX</span><span>Power Query</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.05s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-calculator"></i></div>
+                            <h4>Statistics for Data Science</h4>
+                            <span class="cert-issuer">Great Learning</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Statistics for DS</h4>
+                            <p>Core statistical concepts: probability distributions, hypothesis testing, regression analysis, and inferential statistics for real-world datasets.</p>
+                            <div class="back-tools"><span>Python</span><span>SciPy</span><span>NumPy</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.1s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-laptop-code"></i></div>
+                            <h4>Data Analytics Simulation</h4>
+                            <span class="cert-issuer">Accenture via Forage</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Accenture Simulation</h4>
+                            <p>End-to-end analytics workflow: data cleaning, modeling, and visual storytelling. Simulated real client deliverables under industry conditions.</p>
+                            <div class="back-tools"><span>Excel</span><span>Python</span><span>PowerPoint</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.15s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-database"></i></div>
+                            <h4>PostgreSQL for Beginners</h4>
+                            <span class="cert-issuer">MindLuster</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>PostgreSQL</h4>
+                            <p>Relational database fundamentals: writing complex SQL queries, table relationships, joins, aggregations, and data management in PostgreSQL.</p>
+                            <div class="back-tools"><span>PostgreSQL</span><span>SQL</span><span>pgAdmin</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.2s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-robot"></i></div>
+                            <h4>Gen AI Simulation</h4>
+                            <span class="cert-issuer">BCG X via Forage</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>BCG Gen AI</h4>
+                            <p>Applied Generative AI in business contexts — prompt engineering, use-case identification, and integrating LLMs into analytical workflows.</p>
+                            <div class="back-tools"><span>ChatGPT</span><span>Prompt Eng.</span><span>Python</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.25s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-id-badge"></i></div>
+                            <h4>Face Recognition App</h4>
+                            <span class="cert-issuer">GUVI</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Face Recognition</h4>
+                            <p>Built a working face recognition application using computer vision libraries. Covers real-time detection, encoding, and matching logic.</p>
+                            <div class="back-tools"><span>Python</span><span>OpenCV</span><span>face_recognition</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.3s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-file-excel"></i></div>
+                            <h4>Excel VBA for Beginners</h4>
+                            <span class="cert-issuer">Great Learning</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Excel VBA</h4>
+                            <p>Automated repetitive Excel workflows using VBA macros. Covers UserForms, loops, conditionals, and integrating macros into business templates.</p>
+                            <div class="back-tools"><span>Excel VBA</span><span>Macros</span><span>MS Office</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cert-flip reveal-up" style="--delay: 0.35s">
+                    <div class="flip-inner">
+                        <div class="flip-front cert-front">
+                            <div class="cert-icon-wrap"><i class="fas fa-code"></i></div>
+                            <h4>Matlab Onramp</h4>
+                            <span class="cert-issuer">MathWorks</span>
+                            <div class="flip-hint"><i class="fas fa-rotate"></i></div>
+                        </div>
+                        <div class="flip-back cert-back">
+                            <h4>Matlab Onramp</h4>
+                            <p>Introduction to MATLAB for data analysis — matrix operations, plotting, scripting, and applying computational tools to analytical problems.</p>
+                            <div class="back-tools"><span>MATLAB</span><span>Simulink</span><span>Plotting</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact" class="footer-section">
+        <div class="footer-blob"></div>
+        <div class="container footer-inner">
+            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">05 · Contact</div>
+            <h2 class="footer-heading reveal-up">Let's build something<br><em>remarkable</em> together.</h2>
+            <p class="footer-sub reveal-up">Open to full-time roles in Data Analytics, Business Intelligence, and Finance Analytics. Based in Chennai · Ready to relocate.</p>
+            <div class="footer-btns reveal-up">
+                <a href="mailto:skabeinathan@gmail.com" class="footer-btn primary">
+                    <i class="fas fa-envelope"></i> skabeinathan@gmail.com
+                </a>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/abeinathan" target="_blank" class="social-icon" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/abeinathan" target="_blank" class="social-icon" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="AbeiNathanSK_resume.pdf" target="_blank" class="social-icon" title="Resume">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
                 </div>
             </div>
-
-            <div class="timeline-item hover-target">
-                <div class="timeline-icon"><i class="fas fa-industry"></i></div>
-                <div class="timeline-content">
-                    <span class="date">July 2020</span>
-                    <h3>Intern (Finance & Materials)</h3>
-                    <span class="company">Salem Steel Plant (SAIL)</span>
-                    <p>Coordinated team schedules and performed deep-dive analysis on store inventory and finance department workflows.</p>
-                </div>
-            </div>
-
+            <div class="footer-divider"></div>
+            <p class="footer-copy">© 2026 Abei Nathan S K · Made with precision in Salem, TN.</p>
         </div>
-    </section>
-
-    <section id="certifications" class="container">
-        <h2 class="section-title">Certifications</h2>
-        <p style="margin-bottom:20px; color: #666; text-align:center;">Click on a certificate to see details.</p>
-        <div class="cert-grid">
-            <div class="cert-item hover-target" onclick="openModal('Microsoft Power BI', 'PwC (Forage)', 'Completed a job simulation creating Power BI dashboards for KPIs and business trends.')">
-                <i class="fas fa-chart-bar"></i>
-                <span>Microsoft Power BI</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Statistics for Data Science', 'Great Learning', 'Covered fundamental statistical concepts: probability, hypothesis testing, and regression analysis.')">
-                <i class="fas fa-calculator"></i>
-                <span>Statistics for Data Science</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Data Analytics Job Simulation', 'Accenture (Forage)', 'Practical experience in data cleaning, modeling, and visualization to uncover insights.')">
-                <i class="fas fa-laptop-code"></i>
-                <span>Data Analytics Job Simulation</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('PostgreSQL for Beginners', 'MindLuster', 'Learned the fundamentals of relational databases, writing SQL queries, and managing data.')">
-                <i class="fas fa-database"></i>
-                <span>PostgreSQL for Beginners</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Gen AI Simulation', 'BCG X (Forage)', 'Explored Generative AI applications in business contexts and prompt engineering.')">
-                <i class="fas fa-robot"></i>
-                <span>Gen AI Simulation</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Face Recognition App', 'GUVI', 'Built a face recognition application using Python and OpenCV.')">
-                <i class="fas fa-id-badge"></i>
-                <span>Face Recognition App (Python)</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Excel VBA for Beginners', 'Great Learning', 'Automated Excel tasks using VBA macros to improve spreadsheet efficiency.')">
-                <i class="fas fa-file-excel"></i>
-                <span>Excel VBA for Beginners</span>
-            </div>
-            <div class="cert-item hover-target" onclick="openModal('Matlab Onramp', 'Mathworks', 'Introduction to data analysis and visualization using Matlab.')">
-                <i class="fas fa-code"></i>
-                <span>Matlab Onramp</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="footer">
-        <div class="footer-content">
-            <h2 class="section-title" style="margin-bottom: 20px;">Let's Connect</h2>
-            <p class="footer-desc">
-                I am actively looking for full-time opportunities in Data Analytics. 
-                If you have a role that fits my skills, I'd love to chat.
-            </p>
-            
-            <div class="social-buttons">
-                <a href="mailto:skabeinathan@gmail.com" class="social-btn hover-target">
-                    <i class="fas fa-envelope"></i> <span>Send Email</span>
-                </a>
-                <a href="https://www.linkedin.com/in/abeinathan" target="_blank" class="social-btn hover-target">
-                    <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/abeinathan" target="_blank" class="social-btn hover-target">
-                    <i class="fab fa-github"></i> <span>GitHub</span>
-                </a>
-            </div>
-
-            <p class="copyright">© 2026 Abei Nathan S K. All rights reserved.</p>
-        </div>
-    </section>
+    </footer>
 
     <script>
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        const links = document.querySelectorAll('.hover-target');
+    // ─── CUSTOM CURSOR ───────────────────────────────
+    const dot   = document.querySelector('.cursor-dot');
+    const ring  = document.querySelector('.cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let rafId;
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            setTimeout(() => {
-                follower.style.left = e.clientX + 'px';
-                follower.style.top = e.clientY + 'px';
-            }, 100);
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function animateRing() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+        rafId = requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .flip-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            dot.classList.add('active');
+            ring.classList.add('active');
         });
-
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-                follower.classList.add('active');
-            });
-            link.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-                follower.classList.remove('active');
-            });
+        el.addEventListener('mouseleave', () => {
+            dot.classList.remove('active');
+            ring.classList.remove('active');
         });
+    });
 
-        const modal = document.getElementById("certModal");
-        function openModal(title, provider, desc) {
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalProvider").innerText = provider;
-            document.getElementById("modalDesc").innerText = desc;
-            modal.style.display = "flex";
-        }
-        function closeModal() { modal.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
+    // ─── NAVBAR SCROLL STATE ─────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ─── FLIP CARDS ──────────────────────────────────
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    });
+
+    // ─── SCROLL REVEAL ───────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // ─── MAGNETIC BUTTONS ────────────────────────────
+    document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top  - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.25}px, ${y * 0.4}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+        });
+    });
+
+    // ─── BLOB PARALLAX ───────────────────────────────
+    window.addEventListener('mousemove', e => {
+        const x = (e.clientX / window.innerWidth  - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        document.querySelectorAll('.blob').forEach((b, i) => {
+            const factor = (i + 1) * 0.4;
+            b.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+        });
+    });
     </script>
 </body>
 </html>
