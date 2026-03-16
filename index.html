@@ -29,18 +29,36 @@
                 <span class="logo-dot"></span>
                 Abei Nathan
             </div>
-            <ul class="nav-links">
-                <li><a href="#about" data-hover="About">About</a></li>
-                <li><a href="#projects" data-hover="Work">Projects</a></li>
-                <li><a href="#experience" data-hover="Journey">Experience</a></li>
-                <li><a href="#certifications" data-hover="Certs">Certifications</a></li>
-                <li><a href="#contact" data-hover="Talk">Contact</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link-item">About</a></li>
+                <li><a href="#projects" class="nav-link-item">Projects</a></li>
+                <li><a href="#experience" class="nav-link-item">Experience</a></li>
+                <li><a href="#certifications" class="nav-link-item">Certifications</a></li>
+                <li><a href="#contact" class="nav-link-item">Contact</a></li>
             </ul>
             <a href="AbeiNathanSK_resume.pdf" class="nav-cta" target="_blank">
                 Resume <i class="fas fa-arrow-up-right-from-square"></i>
             </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#projects" class="mobile-link">Projects</a></li>
+            <li><a href="#experience" class="mobile-link">Experience</a></li>
+            <li><a href="#certifications" class="mobile-link">Certifications</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+        <a href="AbeiNathanSK_resume.pdf" class="mobile-resume" target="_blank">
+            <i class="fas fa-file-pdf"></i> Download Resume
+        </a>
+    </div>
 
     <!-- HERO -->
     <header class="hero">
@@ -508,36 +526,53 @@
     </footer>
 
     <script>
-    // ─── CUSTOM CURSOR ───────────────────────────────
-    const dot   = document.querySelector('.cursor-dot');
-    const ring  = document.querySelector('.cursor-ring');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let rafId;
+    const isTouchDevice = () => window.matchMedia('(hover: none)').matches;
 
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX; mouseY = e.clientY;
-        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    });
+    // ─── CUSTOM CURSOR (desktop only) ────────────────
+    const dot  = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.12;
-        ringY += (mouseY - ringY) * 0.12;
-        ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-        rafId = requestAnimationFrame(animateRing);
+    if (!isTouchDevice()) {
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        });
+        (function animateRing() {
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
+            ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+            requestAnimationFrame(animateRing);
+        })();
+        document.querySelectorAll('a, button, .flip-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { dot.classList.add('active'); ring.classList.add('active'); });
+            el.addEventListener('mouseleave', () => { dot.classList.remove('active'); ring.classList.remove('active'); });
+        });
+    } else {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        document.body.style.cursor = 'auto';
     }
-    animateRing();
 
-    document.querySelectorAll('a, button, .flip-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            dot.classList.add('active');
-            ring.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            dot.classList.remove('active');
-            ring.classList.remove('active');
-        });
-    });
+    // ─── HAMBURGER MENU ──────────────────────────────
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        hamburger.classList.add('active');
+    }
+    function closeMenu() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+        hamburger.classList.remove('active');
+    }
+    hamburger.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
     // ─── NAVBAR SCROLL STATE ─────────────────────────
     const navbar = document.getElementById('navbar');
@@ -547,13 +582,10 @@
 
     // ─── FLIP CARDS ──────────────────────────────────
     document.querySelectorAll('.flip-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
     });
 
     // ─── SCROLL REVEAL ───────────────────────────────
-    const revealEls = document.querySelectorAll('.reveal-up');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -561,32 +593,30 @@
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
-    revealEls.forEach(el => observer.observe(el));
+    // ─── MAGNETIC BUTTONS (desktop only) ─────────────
+    if (!isTouchDevice()) {
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', e => {
+                const r = btn.getBoundingClientRect();
+                const x = e.clientX - r.left - r.width / 2;
+                const y = e.clientY - r.top  - r.height / 2;
+                btn.style.transform = `translate(${x * 0.25}px, ${y * 0.4}px)`;
+            });
+            btn.addEventListener('mouseleave', () => btn.style.transform = '');
+        });
 
-    // ─── MAGNETIC BUTTONS ────────────────────────────
-    document.querySelectorAll('.magnetic').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top  - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.25}px, ${y * 0.4}px)`;
+        // ─── BLOB PARALLAX ───────────────────────────
+        window.addEventListener('mousemove', e => {
+            const x = (e.clientX / window.innerWidth  - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
+            document.querySelectorAll('.blob').forEach((b, i) => {
+                b.style.transform = `translate(${x * (i+1) * 0.4}px, ${y * (i+1) * 0.4}px)`;
+            });
         });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-        });
-    });
-
-    // ─── BLOB PARALLAX ───────────────────────────────
-    window.addEventListener('mousemove', e => {
-        const x = (e.clientX / window.innerWidth  - 0.5) * 30;
-        const y = (e.clientY / window.innerHeight - 0.5) * 30;
-        document.querySelectorAll('.blob').forEach((b, i) => {
-            const factor = (i + 1) * 0.4;
-            b.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-        });
-    });
+    }
     </script>
 </body>
 </html>
