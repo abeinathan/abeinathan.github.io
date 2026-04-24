@@ -10,19 +10,15 @@
 </head>
 <body>
 
-    <!-- Noise texture overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- Ambient blobs -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
 
-    <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-inner">
             <div class="logo">
@@ -34,6 +30,7 @@
                 <li><a href="#projects" class="nav-link-item">Projects</a></li>
                 <li><a href="#experience" class="nav-link-item">Experience</a></li>
                 <li><a href="#certifications" class="nav-link-item">Certifications</a></li>
+                <li><a href="#sentiment-tool" class="nav-link-item">Intelligence</a></li>
                 <li><a href="#contact" class="nav-link-item">Contact</a></li>
             </ul>
             <a href="AbeiNathanSK_resume.pdf" class="nav-cta" target="_blank">
@@ -45,7 +42,6 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU OVERLAY -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
         <ul class="mobile-nav-links">
@@ -53,6 +49,7 @@
             <li><a href="#projects" class="mobile-link">Projects</a></li>
             <li><a href="#experience" class="mobile-link">Experience</a></li>
             <li><a href="#certifications" class="mobile-link">Certifications</a></li>
+            <li><a href="#sentiment-tool" class="mobile-link">Intelligence</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
         </ul>
         <a href="AbeiNathanSK_resume.pdf" class="mobile-resume" target="_blank">
@@ -60,7 +57,6 @@
         </a>
     </div>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-badge reveal-up" style="--delay: 0s">
@@ -102,7 +98,6 @@
         </div>
     </header>
 
-    <!-- SKILLS TICKER -->
     <div class="ticker-wrap">
         <div class="ticker-track">
             <div class="ticker-set">
@@ -136,7 +131,6 @@
         </div>
     </div>
 
-    <!-- ABOUT -->
     <section id="about" class="section">
         <div class="container">
             <div class="section-label reveal-up">01 · About</div>
@@ -164,14 +158,12 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects" class="section">
         <div class="container">
             <div class="section-label reveal-up">02 · Projects</div>
             <h2 class="section-heading reveal-up">Selected work. <span class="muted">Click any card.</span></h2>
             <div class="flip-grid">
 
-                <!-- PROJECT 1 -->
                 <div class="flip-card reveal-up" style="--delay: 0s">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -202,7 +194,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 2 -->
                 <div class="flip-card reveal-up" style="--delay: 0.1s">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -233,7 +224,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 3 -->
                 <div class="flip-card reveal-up" style="--delay: 0.2s">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -264,7 +254,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 4 — MilkyWay Tracker -->
                 <div class="flip-card reveal-up" style="--delay: 0.3s">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -299,7 +288,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience" class="section">
         <div class="container">
             <div class="section-label reveal-up">03 · Experience</div>
@@ -315,7 +303,7 @@
                         <span class="tl-date">Jun – Aug 2025</span>
                         <h3 class="tl-title">Data Analytics Intern</h3>
                         <span class="tl-org">Necco Tools · Chennai, India</span>
-                        <p class="tl-desc">Ran EDA in Python on manufacturing data. Built predictive models for defect forecasting. Presented visual reports to the quality team, driving a 15% accuracy improvement.</p>
+                        <p class="tl-desc">Run EDA in Python on manufacturing data. Built predictive models for defect forecasting. Presented visual reports to the quality team, driving a 15% accuracy improvement.</p>
                         <div class="tl-chips">
                             <span>Python</span><span>Scikit-learn</span><span>EDA</span><span>Dashboarding</span>
                         </div>
@@ -357,7 +345,6 @@
         </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
     <section id="certifications" class="section">
         <div class="container">
             <div class="section-label reveal-up">04 · Certifications</div>
@@ -496,11 +483,26 @@
         </div>
     </section>
 
-    <!-- CONTACT / FOOTER -->
+    <section id="sentiment-tool" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">05 · Intelligence</div>
+            <h2 class="section-heading reveal-up">Sentiment Architect <span class="muted">Live NLP Dashboard</span></h2>
+            
+            <div class="sentiment-embed-wrapper reveal-up" style="border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; background: #fff;">
+                <iframe 
+                    src="https://your-app-name.streamlit.app/?embed=true" 
+                    width="100%" 
+                    height="800px" 
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <footer id="contact" class="footer-section">
         <div class="footer-blob"></div>
         <div class="container footer-inner">
-            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">05 · Contact</div>
+            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">06 · Contact</div>
             <h2 class="footer-heading reveal-up">Let's build something<br><em>remarkable</em> together.</h2>
             <p class="footer-sub reveal-up">Open to full-time roles in Data Analytics, Business Intelligence, and Finance Analytics. Based in Chennai · Ready to relocate.</p>
             <div class="footer-btns reveal-up">
