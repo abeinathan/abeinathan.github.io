@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIFTY 50 Predictive Analytics | Abei Nathan</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f4f7f6; 
+            text-align: center; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        p { color: #7f8c8d; max-width: 800px; margin: 0 auto 30px auto; line-height: 1.6; }
+        .back-link { margin-top: 20px; display: inline-block; color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NIFTY 50: Predictive Equity & Risk Engine</h1>
+        <p>
+            This interactive dashboard showcases a Bayesian time-series forecasting model (Prophet) developed on Zorin OS. 
+            The system parallel-processes NIFTY 50 ticker data via a Python ETL pipeline, stores results in PostgreSQL, 
+            and visualizes 90-day price trajectories with shaded uncertainty bands.
+        </p>
+
+        <div class='tableauPlaceholder' id='viz1778593807230' style='position: relative'>
+            <noscript>
+                <a href='#'>
+                    <img alt='NIFTY 50: Predictive Equity &amp; Risk Analytics ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NI&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;1_rss.png' style='border: none' />
+                </a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                <param name='embed_code_version' value='3' /> 
+                <param name='site_root' value='' />
+                <param name='name' value='NIFTY50PredictiveEquityRiskAnalytics&#47;NIFTY50PredictiveEquityRiskAnalytics' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NI&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;1.png' /> 
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-US' />
+            </object>
+        </div>                
+        
+        <script type='text/javascript'>                    
+            var divElement = document.getElementById('viz1778593807230');                    
+            var vizElement = divElement.getElementsByTagName('object')[0];                    
+            
+            // This logic ensures the dashboard fills your website container perfectly
+            vizElement.style.width='100%';
+            vizElement.style.height='800px';                    
+            
+            var scriptElement = document.createElement('script');                    
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+        </script>
+        <br>
+        <a href="index.html" class="back-link">← Back to Main Portfolio</a>
+    </div>
+</body>
+</html>
