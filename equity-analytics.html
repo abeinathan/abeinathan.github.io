@@ -4,37 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NIFTY 50 Predictive Analytics | Abei Nathan</title>
+    <!-- Importing your main portfolio fonts for matching typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg:       #f5f4f0;
+            --ink:      #0a0a0a;
+            --ink-2:    #4a4a4a;
+            --accent:   #1a6bff;
+            --radius:   24px;
+            --font-display: 'Syne', sans-serif;
+            --font-body:    'DM Sans', sans-serif;
+            --ease-fluid:   cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: var(--font-body); 
             margin: 0; 
-            padding: 20px; 
-            background-color: #f4f7f6; 
+            padding: 40px 20px; 
+            background-color: var(--bg); 
             text-align: center; 
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
         }
+
         .container { 
-            max-width: 1200px; 
+            max-width: 1400px; 
             margin: auto; 
-            background: white; 
-            padding: 30px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px; 
+            border-radius: var(--radius); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.04); 
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        h1 { color: #2c3e50; margin-bottom: 10px; }
-        p { color: #7f8c8d; max-width: 800px; margin: 0 auto 30px auto; line-height: 1.6; }
-        .back-link { margin-top: 20px; display: inline-block; color: #3498db; text-decoration: none; font-weight: bold; }
+
+        h1 { 
+            color: var(--ink); 
+            margin-bottom: 16px; 
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        p { 
+            color: var(--ink-2); 
+            max-width: 850px; 
+            margin: 0 auto 40px auto; 
+            line-height: 1.7; 
+            font-size: 1.05rem;
+        }
+
+        .back-link { 
+            margin-top: 30px; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 8px;
+            color: var(--accent); 
+            text-decoration: none; 
+            font-weight: 600; 
+            padding: 12px 24px;
+            border-radius: 100px;
+            background: rgba(26,107,255,0.08);
+            transition: all 0.4s var(--ease-spring);
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26,107,255,0.2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>NIFTY 50: Predictive Equity & Risk Engine</h1>
         <p>
-            This interactive dashboard showcases a Bayesian time-series forecasting model (Prophet) developed on Zorin OS. 
+            This interactive dashboard showcases a Bayesian time-series forecasting model (Prophet) developed on Zorin OS[cite: 3]. 
             The system parallel-processes NIFTY 50 ticker data via a Python ETL pipeline, stores results in PostgreSQL, 
-            and visualizes 90-day price trajectories with shaded uncertainty bands.
+            and visualizes 90-day price trajectories with shaded uncertainty bands[cite: 3].
         </p>
 
-        <div class='tableauPlaceholder' id='viz1778593807230' style='position: relative'>
+        <div class='tableauPlaceholder' id='viz1778593807230' style='position: relative; width: 100%; height: 900px;'>
             <noscript>
                 <a href='#'>
                     <img alt='NIFTY 50: Predictive Equity &amp; Risk Analytics ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NI&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;NIFTY50PredictiveEquityRiskAnalytics&#47;1_rss.png' style='border: none' />
@@ -61,14 +116,14 @@
             var divElement = document.getElementById('viz1778593807230');                    
             var vizElement = divElement.getElementsByTagName('object')[0];                    
             
-            // This logic ensures the dashboard fills your website container perfectly
             vizElement.style.width='100%';
-            vizElement.style.height='800px';                    
+            vizElement.style.height='900px';                    
             
             var scriptElement = document.createElement('script');                    
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
         </script>
+        
         <br>
         <a href="index.html" class="back-link">← Back to Main Portfolio</a>
     </div>
