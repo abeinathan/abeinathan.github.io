@@ -434,7 +434,7 @@ strong { font-weight: 600; }
 .flip-card {
     perspective: 1500px;
     cursor: pointer;
-    height: 450px; /* Enhanced vertical allowance preventing structural cutting */
+    height: 450px;
 }
 .flip-inner {
     position: relative;
@@ -457,7 +457,7 @@ strong { font-weight: 600; }
     padding: 28px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto 1fr auto; /* Middle row expands naturally pushing controls down */
+    grid-template-rows: auto 1fr auto;
     gap: 12px;
 }
 .flip-front {
