@@ -7,122 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Modern Additions for New Structural Elements */
-        .skills-grid-container {
-            padding: 60px 0;
-            background: #fff;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .skills-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 24px;
-        }
-        .skills-group h4 {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            color: var(--ink);
-        }
-        .skills-group ul {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .skills-group li {
-            font-size: 0.9rem;
-            color: var(--ink-2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .skills-group li::before {
-            content: '';
-            width: 4px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-        .card-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: auto;
-            padding-top: 16px;
-        }
-        .btn-card-action {
-            flex: 1;
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-radius: 100px;
-            transition: all 0.3s var(--ease-fluid);
-        }
-        .btn-card-action.primary {
-            background: var(--ink);
-            color: #fff;
-        }
-        .btn-card-action.primary:hover {
-            background: var(--accent);
-        }
-        .btn-card-action.secondary {
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--ink-2);
-        }
-        .btn-card-action.secondary:hover {
-            border-color: var(--ink);
-            color: var(--ink);
-        }
-        .btn-card-action.dark-primary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .btn-card-action.dark-primary:hover {
-            background: #fff;
-            color: var(--ink);
-        }
-        .btn-card-action.dark-secondary {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: transparent;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .btn-card-action.dark-secondary:hover {
-            border-color: #fff;
-            color: #fff;
-        }
-        .cert-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-        .cert-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.8);
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-        .cert-item h4 {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--ink);
-            margin-bottom: 4px;
-        }
-        .cert-item p {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-    </style>
 </head>
 <body>
 
@@ -163,8 +47,8 @@
                 <span class="line reveal-up ampersand" style="--delay: 0.2s">&amp;</span>
                 <span class="line reveal-up" style="--delay: 0.3s">MBA Candidate</span>
             </h1>
-            <p class="hero-sub reveal-up" style="--delay: 0.4s; max-width: 750px;">
-                I'm Abei — MBA candidate finishing at SRMIST in 2026, specializing in Business Analytics. I've built churn prediction models, equity forecasting tools, and sentiment pipelines that actually got used. Looking for a Data or Business Analyst role in Chennai.
+            <p class="hero-sub reveal-up" style="--delay: 0.4s">
+                I'm Abei — MBA candidate finishing at SRMIST in 2026, specializing in Business Analytics. I've built churn prediction models, equity forecasting tools, and sentiment pipelines that actually got used. Looking for a Data or Business Analyst role in Chennai. [cite: 1]
             </p>
             <div class="hero-actions reveal-up" style="--delay: 0.5s">
                 <a href="#projects" class="btn-primary">
@@ -247,17 +131,21 @@
                 <div class="flip-card reveal-up" style="--delay: 0.1s">
                     <div class="flip-inner">
                         <div class="flip-front">
-                            <div class="card-num">01</div>
-                            <div class="card-icon-wrap"><i class="fas fa-users-slash"></i></div>
-                            <h3>B2C Revenue-at-Risk Engine</h3>
-                            <span class="card-meta">Predictive Churn Strategy · 2026</span>
-                            <p>Engineered an enterprise-grade ML pipeline prioritizing retention by multiplying Random Forest probabilities by historical LTV to capture highest dollar-at-risk accounts.</p>
-                            <div class="card-tags">
-                                <span>Scikit-Learn</span><span>SHAP</span><span>Tableau</span>
+                            <div>
+                                <div class="card-num">01</div>
+                                <div class="card-icon-wrap"><i class="fas fa-users-slash"></i></div>
+                                <h3>B2C Revenue-at-Risk Engine</h3>
+                                <span class="card-meta">Predictive Churn Strategy · 2026</span>
                             </div>
-                            <div class="card-actions">
-                                <a href="revenue-risk-engine.html" class="btn-card-action primary">View Dashboard</a>
-                                <a href="https://github.com/abeinathan/revenue-risk-engine" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            <p>Engineered an enterprise-grade ML pipeline prioritizing retention by multiplying Random Forest probabilities by historical LTV to capture highest dollar-at-risk accounts.</p>
+                            <div>
+                                <div class="card-tags" style="margin-bottom: 12px;">
+                                    <span>Scikit-Learn</span><span>SHAP</span><span>Tableau</span>
+                                </div>
+                                <div class="card-actions">
+                                    <a href="#" class="btn-card-action primary">View Dashboard</a>
+                                    <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                                </div>
                             </div>
                         </div>
                         <div class="flip-back">
@@ -267,13 +155,12 @@
                             </div>
                             <ul class="back-list">
                                 <li><strong>Python / Pandas</strong> — Data engineering & ETL pipelines.</li>
-                                <li><strong>Random Forest</strong> — Handled class imbalances effectively (0.989 AUC).</li>
+                                <li><strong>Random Forest</strong> — Handled class imbalances effectively.</li>
                                 <li><strong>SHAP XAI</strong> — TreeExplainer implementation for model feature transparency.</li>
-                                <li><strong>Tableau</strong> — Front-end visualization tracking prioritized retention targets.</li>
                             </ul>
-                            <div class="card-actions" style="margin-top:auto;">
-                                <a href="revenue-risk-engine.html" class="btn-card-action dark-primary">View Dashboard</a>
-                                <a href="https://github.com/abeinathan/revenue-risk-engine" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                            <div class="card-actions">
+                                <a href="#" class="btn-card-action dark-primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
                             </div>
                         </div>
                     </div>
@@ -282,17 +169,21 @@
                 <div class="flip-card reveal-up" style="--delay: 0.2s">
                     <div class="flip-inner">
                         <div class="flip-front">
-                            <div class="card-num">02</div>
-                            <div class="card-icon-wrap"><i class="fas fa-chart-line"></i></div>
-                            <h3>NIFTY 50 Predictive Equity Engine</h3>
-                            <span class="card-meta">Time-Series & Risk Analytics · 2026</span>
-                            <p>Parallel-processes asset data via Python ETL into PostgreSQL. Implements Bayesian forecasting to model 90-day trajectory paths with shaded uncertainty bands.</p>
-                            <div class="card-tags">
-                                <span>Prophet</span><span>PostgreSQL</span><span>Tableau</span>
+                            <div>
+                                <div class="card-num">02</div>
+                                <div class="card-icon-wrap"><i class="fas fa-chart-line"></i></div>
+                                <h3>NIFTY 50 Predictive Equity Engine</h3>
+                                <span class="card-meta">Time-Series & Risk Analytics · 2026</span>
                             </div>
-                            <div class="card-actions">
-                                <a href="equity-analytics.html" class="btn-card-action primary">View Dashboard</a>
-                                <a href="https://github.com/abeinathan/nifty50-equity-engine" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            <p>Parallel-processes asset data via Python ETL into PostgreSQL. Implements Bayesian forecasting to model 90-day trajectory paths with shaded uncertainty bands.</p>
+                            <div>
+                                <div class="card-tags" style="margin-bottom: 12px;">
+                                    <span>Prophet</span><span>PostgreSQL</span><span>Tableau</span>
+                                </div>
+                                <div class="card-actions">
+                                    <a href="https://public.tableau.com/app/profile/abei.nathan1154/viz/NIFTY50PredictiveEquityRiskAnalytics/NIFTY50PredictiveEquityRiskAnalytics" target="_blank" class="btn-card-action primary">View Dashboard</a>
+                                    <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                                </div>
                             </div>
                         </div>
                         <div class="flip-back">
@@ -305,9 +196,9 @@
                                 <li><strong>PostgreSQL</strong> — Structured storage environment mapping historical ticker lines.</li>
                                 <li><strong>Python ETL</strong> — Automated ingestion routines parsing continuous market states.</li>
                             </ul>
-                            <div class="card-actions" style="margin-top:auto;">
-                                <a href="equity-analytics.html" class="btn-card-action dark-primary">View Dashboard</a>
-                                <a href="https://github.com/abeinathan/nifty50-equity-engine" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                            <div class="card-actions">
+                                <a href="https://public.tableau.com/app/profile/abei.nathan1154/viz/NIFTY50PredictiveEquityRiskAnalytics/NIFTY50PredictiveEquityRiskAnalytics" target="_blank" class="btn-card-action dark-primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
                             </div>
                         </div>
                     </div>
@@ -316,17 +207,21 @@
                 <div class="flip-card reveal-up" style="--delay: 0.3s">
                     <div class="flip-inner">
                         <div class="flip-front">
-                            <div class="card-num">03</div>
-                            <div class="card-icon-wrap"><i class="fas fa-brain"></i></div>
-                            <h3>YouTube Sentiment Pipeline</h3>
-                            <span class="card-meta">NLP & Voice of Customer · 2026</span>
-                            <p>Strategic deployment processing natural language comments into actionable product roadmaps using weighted VADER structures and real-time Streamlit components.</p>
-                            <div class="card-tags">
-                                <span>Streamlit</span><span>VADER</span><span>TextBlob</span>
+                            <div>
+                                <div class="card-num">03</div>
+                                <div class="card-icon-wrap"><i class="fas fa-brain"></i></div>
+                                <h3>YouTube Sentiment Pipeline</h3>
+                                <span class="card-meta">NLP & Voice of Customer · 2026</span>
                             </div>
-                            <div class="card-actions">
-                                <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="btn-card-action primary">View Demo</a>
-                                <a href="https://github.com/abeinathan/youtube-sentiment-analytics" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            <p>Strategic deployment processing natural language comments into actionable product roadmaps using weighted VADER structures and real-time Streamlit components.</p>
+                            <div>
+                                <div class="card-tags" style="margin-bottom: 12px;">
+                                    <span>Streamlit</span><span>VADER</span><span>TextBlob</span>
+                                </div>
+                                <div class="card-actions">
+                                    <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="btn-card-action primary">View Demo</a>
+                                    <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                                </div>
                             </div>
                         </div>
                         <div class="flip-back">
@@ -339,9 +234,9 @@
                                 <li><strong>Streamlit</strong> — High-performance reactive web application deployment framework.</li>
                                 <li><strong>GitHub Actions</strong> — Configured automated cron workflows maintaining active instance runtimes.</li>
                             </ul>
-                            <div class="card-actions" style="margin-top:auto;">
+                            <div class="card-actions">
                                 <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="btn-card-action dark-primary">View Demo</a>
-                                <a href="https://github.com/abeinathan/youtube-sentiment-analytics" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                                <a href="https://github.com/abeinathan" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
                             </div>
                         </div>
                     </div>
@@ -359,7 +254,7 @@
 
                 <div class="tl-item reveal-up">
                     <div class="tl-left">
-                        <div class="tl-dot"><i class="fas fa-工业"></i></div>
+                        <div class="tl-dot"><i class="fas fa-industry"></i></div>
                         <div class="tl-line"></div>
                     </div>
                     <div class="tl-right">
@@ -381,7 +276,7 @@
                     <div class="tl-right">
                         <span class="tl-date">Jan 2025 – Feb 2025</span>
                         <h3 class="tl-title">Campus Ambassador</h3>
-                        <span class="tl-org">IIT Delhi Entrepreneurship Development Cell</span>
+                        <span class="tl-org">IIT Delhi Entrepreneurship Development Cell [cite: 2]</span>
                         <p class="tl-desc">Directed a 10-person regional promotional assembly coordinating regional outreach programs. Monitored digital engagement metrics and audience growth curves to refine strategy.</p>
                         <div class="tl-chips">
                             <span>Team Coordination</span><span>Digital Engagement KPIs</span><span>Outreach Management</span>
@@ -450,20 +345,24 @@
             <div class="section-label reveal-up">04 · Credentials</div>
             <h2 class="section-heading reveal-up">Certifications & Simulations.</h2>
             <div class="cert-list reveal-up">
-                <div class="cert-item"><h4>Data Analytics and Visualization Simulation</h4><p>Forage Accenture</p></div>
-                <div class="cert-item"><h4>Power BI Job Simulation</h4><p>Forage PwC</p></div>
-                <div class="cert-item"><h4>Data Science Job Simulation</h4><p>Forage Lloyds</p></div>
-                <div class="cert-item"><h4>Gen AI Job Simulation</h4><p>Forage BCG X</p></div>
-                <div class="cert-item"><h4>MATLAB Onramp</h4><p>MathWorks</p></div>
-                <div class="cert-item"><h4>Business Etiquette Certificate</h4><p>TCS iON</p></div>
-                <div class="cert-item"><h4>Quantitative Aptitude Basics</h4><p>Great Learning</p></div>
-                <div class="cert-item"><h4>Excel VBA for Beginners</h4><p>Great Learning</p></div>
-                <div class="cert-item"><h4>Statistics for Data Science</h4><p>Great Learning</p></div>
-                <div class="cert-item"><h4>Face Recognition App with Python</h4><p>GUVI</p></div>
-                <div class="cert-item"><h4>Mastering Microsoft Power BI</h4><p>Mindluster</p></div>
-                <div class="cert-item"><h4>PostgreSQL for Beginners</h4><p>Mindluster</p></div>
-                <div class="cert-item"><h4>Business Analytics Trends Workshop</h4><p>SRM KTR</p></div>
-                <div class="cert-item"><h4>Campus Ambassador Program</h4><p>IIT Delhi EDC</p></div>
+                <div class="cert-item"><h4>Data Analytics and Visualization Job Simulation</h4><p>Forage Accenture [cite: 2]</p></div>
+                <div class="cert-item"><h4>Power BI Job Simulation</h4><p>Forage PwC [cite: 2]</p></div>
+                <div class="cert-item"><h4>Data Science Job Simulation</h4><p>Forage Lloyds [cite: 2]</p></div>
+                <div class="cert-item"><h4>Gen AI Job Simulation</h4><p>Forage BCG X [cite: 2]</p></div>
+                <div class="cert-item"><h4>MATLAB Onramp</h4><p>MathWorks [cite: 2]</p></div>
+                <div class="cert-item"><h4>Business Etiquette</h4><p>TCS iON [cite: 2]</p></div>
+                <div class="cert-item"><h4>Quantitative Aptitude Basics</h4><p>Great Learning [cite: 2]</p></div>
+                <div class="cert-item"><h4>Excel VBA for Beginners</h4><p>Great Learning [cite: 2]</p></div>
+                <div class="cert-item"><h4>Statistics for Data Science</h4><p>Great Learning [cite: 2]</p></div>
+                <div class="cert-item"><h4>Build a Face Recognition App Using Python</h4><p>GUVI [cite: 2]</p></div>
+                <div class="cert-item"><h4>Mastering Microsoft Power BI</h4><p>Mindluster [cite: 2]</p></div>
+                <div class="cert-item"><h4>PostgreSQL for Beginners</h4><p>Mindluster [cite: 2]</p></div>
+                <div class="cert-item"><h4>Business Analytics Trends and Opportunities</h4><p>SRM KTR [cite: 2]</p></div>
+                <div class="cert-item"><h4>Campus Ambassador Program</h4><p>IIT Delhi [cite: 2]</p></div>
+                <div class="cert-item"><h4>Quantitative Aptitude Basics</h4><p>Great Learning [cite: 2]</p></div>
+                <div class="cert-item"><h4>Business Analytics Basics</h4><p>Mindluster [cite: 2]</p></div>
+                <div class="cert-item"><h4>Job Skills</h4><p>CareerStokes [cite: 2]</p></div>
+                <div class="cert-item"><h4>Digital Marketing for Beginners</h4><p>Mindluster [cite: 2]</p></div>
             </div>
         </div>
     </section>
@@ -529,6 +428,15 @@
                         card.classList.toggle('flipped');
                     }
                 });
+            });
+
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if(window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
             });
         });
     </script>
