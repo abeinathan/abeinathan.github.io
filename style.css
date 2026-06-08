@@ -448,7 +448,6 @@ strong { font-weight: 600; }
     transform: rotateY(180deg);
 }
 
-/* Compact Face Overrides Fixing Row Layout Clippings */
 .flip-front, .flip-back {
     position: absolute;
     inset: 0;
@@ -576,7 +575,6 @@ strong { font-weight: 600; }
     color: rgba(255,255,255,0.5);
 }
 
-/* Stack Drawer Micro-Spacings */
 .back-list {
     list-style: none;
     display: flex;
@@ -799,7 +797,7 @@ strong { font-weight: 600; }
 }
 .social-icon {
     width: 52px; height: 52px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,25.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
