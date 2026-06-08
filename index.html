@@ -7,6 +7,122 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Additions for New Structural Elements */
+        .skills-grid-container {
+            padding: 60px 0;
+            background: #fff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+        }
+        .skills-group h4 {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: var(--ink);
+        }
+        .skills-group ul {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .skills-group li {
+            font-size: 0.9rem;
+            color: var(--ink-2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skills-group li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 16px;
+        }
+        .btn-card-action {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 100px;
+            transition: all 0.3s var(--ease-fluid);
+        }
+        .btn-card-action.primary {
+            background: var(--ink);
+            color: #fff;
+        }
+        .btn-card-action.primary:hover {
+            background: var(--accent);
+        }
+        .btn-card-action.secondary {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--ink-2);
+        }
+        .btn-card-action.secondary:hover {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+        .btn-card-action.dark-primary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-card-action.dark-primary:hover {
+            background: #fff;
+            color: var(--ink);
+        }
+        .btn-card-action.dark-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .btn-card-action.dark-secondary:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+        .cert-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .cert-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        .cert-item h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+        .cert-item p {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
 
@@ -25,7 +141,9 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#projects" class="nav-link-item">Projects</a></li>
-                <li><a href="#revenue-engine" class="nav-link-item">Intelligence</a></li>
+                <li><a href="#experience" class="nav-link-item">Experience</a></li>
+                <li><a href="#education" class="nav-link-item">Education</a></li>
+                <li><a href="#certifications" class="nav-link-item">Certifications</a></li>
                 <li><a href="#contact" class="nav-link-item">Contact</a></li>
             </ul>
             <a href="AbeiNathanSK_resume.pdf" class="nav-cta" target="_blank">
@@ -45,8 +163,8 @@
                 <span class="line reveal-up ampersand" style="--delay: 0.2s">&amp;</span>
                 <span class="line reveal-up" style="--delay: 0.3s">MBA Candidate</span>
             </h1>
-            <p class="hero-sub reveal-up" style="--delay: 0.4s">
-                Turning messy datasets into crisp decisions. Python · SQL · Power BI · ML.
+            <p class="hero-sub reveal-up" style="--delay: 0.4s; max-width: 750px;">
+                I'm Abei — MBA candidate finishing at SRMIST in 2026, specializing in Business Analytics. I've built churn prediction models, equity forecasting tools, and sentiment pipelines that actually got used. Looking for a Data or Business Analyst role in Chennai.
             </p>
             <div class="hero-actions reveal-up" style="--delay: 0.5s">
                 <a href="#projects" class="btn-primary">
@@ -61,67 +179,86 @@
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <strong>3+</strong><span>Internships</span>
+                    <strong>3</strong><span>Internships & Leadership</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <strong>8</strong><span>Certifications</span>
+                    <strong>17</strong><span>Certifications & Workshops</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="ticker-wrap">
-        <div class="ticker-track">
-            <div class="ticker-set">
-                <span>Python</span><span class="sep">◆</span>
-                <span>SQL</span><span class="sep">◆</span>
-                <span>Power BI</span><span class="sep">◆</span>
-                <span>Machine Learning</span><span class="sep">◆</span>
-                <span>Pandas</span><span class="sep">◆</span>
-                <span>NumPy</span><span class="sep">◆</span>
-                <span>Scikit-learn</span><span class="sep">◆</span>
-                <span>EDA</span><span class="sep">◆</span>
-                <span>PostgreSQL</span><span class="sep">◆</span>
-                <span>MS Excel</span><span class="sep">◆</span>
-                <span>SHAP / XAI</span><span class="sep">◆</span>
-                <span>Statistical Modeling</span><span class="sep">◆</span>
-            </div>
-            <div class="ticker-set" aria-hidden="true">
-                <span>Python</span><span class="sep">◆</span>
-                <span>SQL</span><span class="sep">◆</span>
-                <span>Power BI</span><span class="sep">◆</span>
-                <span>Machine Learning</span><span class="sep">◆</span>
-                <span>Pandas</span><span class="sep">◆</span>
-                <span>NumPy</span><span class="sep">◆</span>
-                <span>Scikit-learn</span><span class="sep">◆</span>
-                <span>EDA</span><span class="sep">◆</span>
-                <span>PostgreSQL</span><span class="sep">◆</span>
-                <span>MS Excel</span><span class="sep">◆</span>
-                <span>SHAP / XAI</span><span class="sep">◆</span>
-                <span>Statistical Modeling</span><span class="sep">◆</span>
+    <section class="skills-grid-container">
+        <div class="container">
+            <div class="skills-matrix">
+                <div class="skills-group">
+                    <h4>Languages</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>BI & Viz</h4>
+                    <ul>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                        <li>Matplotlib</li>
+                        <li>Seaborn</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Libraries</h4>
+                    <ul>
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>Scikit-learn</li>
+                        <li>SHAP</li>
+                        <li>HuggingFace</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Databases</h4>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>MS Excel</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Other</h4>
+                    <ul>
+                        <li>EDA</li>
+                        <li>Statistical Modelling</li>
+                        <li>XGBoost</li>
+                        <li>Random Forest</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <section id="projects" class="section">
         <div class="container">
             <div class="section-label reveal-up">01 · Projects</div>
-            <h2 class="section-heading reveal-up">Selected work. <span class="muted">Click card for details.</span></h2>
+            <h2 class="section-heading reveal-up">Selected work. <span class="muted">Click card to view analytical architecture.</span></h2>
             <div class="flip-grid">
 
                 <div class="flip-card reveal-up" style="--delay: 0.1s">
                     <div class="flip-inner">
                         <div class="flip-front">
                             <div class="card-num">01</div>
-                            <div class="card-icon-wrap"><i class="fas fa-chart-pie"></i></div>
+                            <div class="card-icon-wrap"><i class="fas fa-users-slash"></i></div>
                             <h3>B2C Revenue-at-Risk Engine</h3>
-                            <span class="card-meta">Predictive Analytics · 2026</span>
-                            <p>Engineered an enterprise-grade ML pipeline to transition retention workflows from reactive to predictive ROI optimization. Hit 0.989 ROC-AUC.</p>
+                            <span class="card-meta">Predictive Churn Strategy · 2026</span>
+                            <p>Engineered an enterprise-grade ML pipeline prioritizing retention by multiplying Random Forest probabilities by historical LTV to capture highest dollar-at-risk accounts.</p>
                             <div class="card-tags">
                                 <span>Scikit-Learn</span><span>SHAP</span><span>Tableau</span>
                             </div>
-                            <div class="flip-hint"><i class="fas fa-rotate"></i> Flip for details</div>
+                            <div class="card-actions">
+                                <a href="revenue-risk-engine.html" class="btn-card-action primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan/revenue-risk-engine" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            </div>
                         </div>
                         <div class="flip-back">
                             <div class="back-header">
@@ -129,13 +266,83 @@
                                 <span class="back-sub">Revenue Risk Engine</span>
                             </div>
                             <ul class="back-list">
-                                <li><i class="fab fa-python"></i> <strong>Python / Pandas</strong> — Data engineering & ETL</li>
-                                <li><i class="fas fa-tree"></i> <strong>Random Forest</strong> — Handled class imbalances (0.989 AUC)</li>
-                                <li><i class="fas fa-microscope"></i> <strong>SHAP XAI</strong> — TreeExplainer for feature transparency</li>
-                                <li><i class="fas fa-chart-line"></i> <strong>Tableau</strong> — Interactive executive deployment</li>
-                                <li><i class="fab fa-linux"></i> <strong>Zorin OS</strong> — Native Linux runtime environment</li>
+                                <li><strong>Python / Pandas</strong> — Data engineering & ETL pipelines.</li>
+                                <li><strong>Random Forest</strong> — Handled class imbalances effectively (0.989 AUC).</li>
+                                <li><strong>SHAP XAI</strong> — TreeExplainer implementation for model feature transparency.</li>
+                                <li><strong>Tableau</strong> — Front-end visualization tracking prioritized retention targets.</li>
                             </ul>
-                            <div class="back-outcome">🚀 Actionable MRR protection hit-list</div>
+                            <div class="card-actions" style="margin-top:auto;">
+                                <a href="revenue-risk-engine.html" class="btn-card-action dark-primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan/revenue-risk-engine" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card reveal-up" style="--delay: 0.2s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">02</div>
+                            <div class="card-icon-wrap"><i class="fas fa-chart-line"></i></div>
+                            <h3>NIFTY 50 Predictive Equity Engine</h3>
+                            <span class="card-meta">Time-Series & Risk Analytics · 2026</span>
+                            <p>Parallel-processes asset data via Python ETL into PostgreSQL. Implements Bayesian forecasting to model 90-day trajectory paths with shaded uncertainty bands.</p>
+                            <div class="card-tags">
+                                <span>Prophet</span><span>PostgreSQL</span><span>Tableau</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="equity-analytics.html" class="btn-card-action primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan/nifty50-equity-engine" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            </div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">Predictive Equity Engine</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><strong>Prophet</strong> — Bayesian mathematical engine for time-series forecasting.</li>
+                                <li><strong>PostgreSQL</strong> — Structured storage environment mapping historical ticker lines.</li>
+                                <li><strong>Python ETL</strong> — Automated ingestion routines parsing continuous market states.</li>
+                            </ul>
+                            <div class="card-actions" style="margin-top:auto;">
+                                <a href="equity-analytics.html" class="btn-card-action dark-primary">View Dashboard</a>
+                                <a href="https://github.com/abeinathan/nifty50-equity-engine" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card reveal-up" style="--delay: 0.3s">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="card-num">03</div>
+                            <div class="card-icon-wrap"><i class="fas fa-brain"></i></div>
+                            <h3>YouTube Sentiment Pipeline</h3>
+                            <span class="card-meta">NLP & Voice of Customer · 2026</span>
+                            <p>Strategic deployment processing natural language comments into actionable product roadmaps using weighted VADER structures and real-time Streamlit components.</p>
+                            <div class="card-tags">
+                                <span>Streamlit</span><span>VADER</span><span>TextBlob</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="btn-card-action primary">View Demo</a>
+                                <a href="https://github.com/abeinathan/youtube-sentiment-analytics" target="_blank" class="btn-card-action secondary">GitHub Repo</a>
+                            </div>
+                        </div>
+                        <div class="flip-back">
+                            <div class="back-header">
+                                <h3>Tech Stack</h3>
+                                <span class="back-sub">Voice of Customer Framework</span>
+                            </div>
+                            <ul class="back-list">
+                                <li><strong>VADER & TextBlob</strong> — Lexicon and rule-based sentiment assessment.</li>
+                                <li><strong>Streamlit</strong> — High-performance reactive web application deployment framework.</li>
+                                <li><strong>GitHub Actions</strong> — Configured automated cron workflows maintaining active instance runtimes.</li>
+                            </ul>
+                            <div class="card-actions" style="margin-top:auto;">
+                                <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="btn-card-action dark-primary">View Demo</a>
+                                <a href="https://github.com/abeinathan/youtube-sentiment-analytics" target="_blank" class="btn-card-action dark-secondary">GitHub Repo</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,30 +351,119 @@
         </div>
     </section>
 
-    <section id="revenue-engine" class="section">
+    <section id="experience" class="section">
         <div class="container">
-            <div class="section-label reveal-up">02 · Customer Intelligence</div>
-            <h2 class="section-heading reveal-up">MRR Protection Engine <span class="muted">Predictive Churn & Risk Dashboard</span></h2>
-            
-            <div class="sentiment-embed-wrapper reveal-up" style="border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; overflow: hidden; background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; padding: 50px 40px; text-align: center;">
-                <div style="max-width: 800px; margin-bottom: 30px;">
-                    <div style="width: 72px; height: 72px; background: rgba(26,107,255,0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
-                        <i class="fas fa-users-slash" style="font-size: 2rem; color: var(--accent);"></i>
+            <div class="section-label reveal-up">02 · Experience</div>
+            <h2 class="section-heading reveal-up">Professional history.</h2>
+            <div class="timeline">
+
+                <div class="tl-item reveal-up">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-工业"></i></div>
+                        <div class="tl-line"></div>
                     </div>
-                    <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; font-weight: 800; letter-spacing: -1px;">Prioritizing Financial ROI in Retention</h3>
-                    <p style="color: var(--ink-2); line-height: 1.7; margin-bottom: 30px; font-size: 1.1rem;">
-                        Treating all customer churn equally wastes operational budget. By multiplying Random Forest churn probabilities by historical LTV, this pipeline generates a prioritized list of accounts where the highest dollar amounts are actively at risk, visualized seamlessly in Tableau.
-                    </p>
-                    <div class="about-tags" style="justify-content: center; margin-bottom: 36px;">
-                        <div class="tag-pill">Python ML Pipeline</div>
-                        <div class="tag-pill">SHAP Explainability</div>
-                        <div class="tag-pill">Tableau Public UI</div>
+                    <div class="tl-right">
+                        <span class="tl-date">Jun 2025 – Aug 2025</span>
+                        <h3 class="tl-title">Data Analyst Intern</h3>
+                        <span class="tl-org">Necco Tools</span>
+                        <p class="tl-desc">Developed and evaluated predictive machine learning configurations built to model factory defect rates. Delivered robust diagnostic frameworks cutting output discrepancies by 15% and launched automated reporting dashboards for optimization teams.</p>
+                        <div class="tl-chips">
+                            <span>Predictive Modeling</span><span>Defect Diagnostics</span><span>Dashboard Deployment</span>
+                        </div>
                     </div>
-                    <a href="revenue-risk-engine.html" class="btn-primary" style="text-decoration: none; padding: 18px 40px; font-size: 1.05rem;">
-                        <span>Launch Analytics Engine</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
+
+                <div class="tl-item reveal-up">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-university"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">Jan 2025 – Feb 2025</span>
+                        <h3 class="tl-title">Campus Ambassador</h3>
+                        <span class="tl-org">IIT Delhi Entrepreneurship Development Cell</span>
+                        <p class="tl-desc">Directed a 10-person regional promotional assembly coordinating regional outreach programs. Monitored digital engagement metrics and audience growth curves to refine strategy.</p>
+                        <div class="tl-chips">
+                            <span>Team Coordination</span><span>Digital Engagement KPIs</span><span>Outreach Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal-up">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-layer-group"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">Jul 2020</span>
+                        <h3 class="tl-title">Management Intern</h3>
+                        <span class="tl-org">Salem Steel Plant (SAIL)</span>
+                        <p class="tl-desc">Analyzed complex material supply workflows across 500 active physical configurations to optimize logistical routing matrices. Mapped distribution line paths to isolate operational delay variables.</p>
+                        <div class="tl-chips">
+                            <span>Inventory Analysis</span><span>Logistics Matrices</span><span>Workflow Mapping</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">03 · Education</div>
+            <h2 class="section-heading reveal-up">Academic background.</h2>
+            <div class="timeline">
+
+                <div class="tl-item reveal-up">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">2024 – 2026</span>
+                        <h3 class="tl-title">Master of Business Administration (MBA) — Business Analytics</h3>
+                        <span class="tl-org">SRM Institute of Science and Technology (SRMIST, KTR)</span>
+                        <p class="tl-desc"><strong>CGPA: 9.21</strong> | Specialized focus on technical statistical modeling, diagnostic framework deployment, and enterprise database infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal-up">
+                    <div class="tl-left">
+                        <div class="tl-dot"><i class="fas fa-certificate"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-right">
+                        <span class="tl-date">2020 – 2023</span>
+                        <h3 class="tl-title">Bachelor of Commerce (B.Com) — Corporate Secretaryship</h3>
+                        <span class="tl-org">Dr. G R Damodaran College of Science, Coimbatore</span>
+                        <p class="tl-desc"><strong>CGPA: 7.21</strong> | Foundational grounding in corporate structures, regulatory procedures, operational governance, and structural administration.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-label reveal-up">04 · Credentials</div>
+            <h2 class="section-heading reveal-up">Certifications & Simulations.</h2>
+            <div class="cert-list reveal-up">
+                <div class="cert-item"><h4>Data Analytics and Visualization Simulation</h4><p>Forage Accenture</p></div>
+                <div class="cert-item"><h4>Power BI Job Simulation</h4><p>Forage PwC</p></div>
+                <div class="cert-item"><h4>Data Science Job Simulation</h4><p>Forage Lloyds</p></div>
+                <div class="cert-item"><h4>Gen AI Job Simulation</h4><p>Forage BCG X</p></div>
+                <div class="cert-item"><h4>MATLAB Onramp</h4><p>MathWorks</p></div>
+                <div class="cert-item"><h4>Business Etiquette Certificate</h4><p>TCS iON</p></div>
+                <div class="cert-item"><h4>Quantitative Aptitude Basics</h4><p>Great Learning</p></div>
+                <div class="cert-item"><h4>Excel VBA for Beginners</h4><p>Great Learning</p></div>
+                <div class="cert-item"><h4>Statistics for Data Science</h4><p>Great Learning</p></div>
+                <div class="cert-item"><h4>Face Recognition App with Python</h4><p>GUVI</p></div>
+                <div class="cert-item"><h4>Mastering Microsoft Power BI</h4><p>Mindluster</p></div>
+                <div class="cert-item"><h4>PostgreSQL for Beginners</h4><p>Mindluster</p></div>
+                <div class="cert-item"><h4>Business Analytics Trends Workshop</h4><p>SRM KTR</p></div>
+                <div class="cert-item"><h4>Campus Ambassador Program</h4><p>IIT Delhi EDC</p></div>
             </div>
         </div>
     </section>
@@ -175,11 +471,21 @@
     <footer id="contact" class="footer-section">
         <div class="footer-blob"></div>
         <div class="container footer-inner">
-            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">03 · Contact</div>
+            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">05 · Contact</div>
             <h2 class="footer-heading reveal-up">Let's build something<br><em>remarkable</em> together.</h2>
-            <p class="footer-sub reveal-up">Open to full-time roles in Data Analytics, Business Intelligence, and Finance Analytics. Based in Chennai · Ready to relocate.</p>
+            
+            <p class="footer-sub reveal-up" style="color: #fff; font-weight: 500; margin-bottom: 12px;">
+                Available for immediate joining. Open to Chennai, Bangalore, and Coimbatore.
+            </p>
+            <p class="footer-sub reveal-up" style="margin-top: 0; margin-bottom: 40px;">
+                Available for interviews. Phone: +91 9952227911
+            </p>
+
             <div class="footer-btns reveal-up">
-                <a href="mailto:abeinathan@protonmail.com" class="footer-btn primary">
+                <a href="mailto:skabeinathan@gmail.com" class="footer-btn primary">
+                    <i class="fas fa-envelope"></i> skabeinathan@gmail.com
+                </a>
+                <a href="mailto:abeinathan@protonmail.com" class="footer-btn primary" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);">
                     <i class="fas fa-envelope"></i> abeinathan@protonmail.com
                 </a>
                 <div class="footer-socials">
@@ -197,7 +503,6 @@
     </footer>
 
     <script>
-        // IMMUTABLE ENGINE: Instantly triggers layout elements, bypassing observer calculation failures.
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 document.querySelectorAll('.reveal-up').forEach(el => {
@@ -205,7 +510,6 @@
                 });
             }, 150);
 
-            // Simple responsive cursor system
             const dot = document.querySelector('.cursor-dot');
             const ring = document.querySelector('.cursor-ring');
             if(dot && ring && window.matchMedia('(hover: hover)').matches) {
@@ -219,9 +523,12 @@
                 document.body.style.cursor = 'auto';
             }
 
-            // Interactive component triggers
             document.querySelectorAll('.flip-card').forEach(card => {
-                card.addEventListener('click', () => card.classList.toggle('flipped'));
+                card.addEventListener('click', (e) => {
+                    if(!e.target.closest('.card-actions')) {
+                        card.classList.toggle('flipped');
+                    }
+                });
             });
         });
     </script>
