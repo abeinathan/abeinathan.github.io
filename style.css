@@ -448,17 +448,18 @@ strong { font-weight: 600; }
     transform: rotateY(180deg);
 }
 
+/* Compact Face Overrides Fixing Row Layout Clippings */
 .flip-front, .flip-back {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: var(--radius);
-    padding: 28px;
+    padding: 24px;
     overflow: hidden;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 12px;
+    gap: 8px;
 }
 .flip-front {
     background: var(--card-bg);
@@ -574,19 +575,23 @@ strong { font-weight: 600; }
     font-size: 0.8rem;
     color: rgba(255,255,255,0.5);
 }
+
+/* Stack Drawer Micro-Spacings */
 .back-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 6px;
+    margin-top: 4px;
+    overflow-y: auto;
 }
 .back-list li {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.4;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.35;
 }
 .back-list li strong { color: #fff; }
+
 .btn-card-action.dark-primary {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
