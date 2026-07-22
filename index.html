@@ -37,6 +37,7 @@
     <meta name="google-site-verification" content="Fk3kuKFo-vyIcI3QkR0DioSewPb9-k608n5EfMAVDcc" />
     <link rel="stylesheet" href="style.css?v=1.0.1">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -47,6 +48,8 @@
     <div class="blob blob-3"></div>
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
+
+    <aside id="lineSidebar" class="line-sidebar-mount" aria-label="Section index"></aside>
 
     <nav id="navbar">
         <div class="nav-inner">
@@ -68,86 +71,110 @@
     </nav>
 
     <header class="hero">
-        <div class="hero-inner">
-            <div class="hero-badge reveal-up" style="--delay: 0s">
-                <span class="badge-dot"></span>
-                Open to opportunities · Chennai · Bengaluru · Coimbatore
+        <div id="dotFieldMount" class="dot-field-mount" aria-hidden="true"></div>
+        <div class="hero-inner hero-inner--split">
+            <div class="hero-content">
+                <div class="hero-badge reveal-up" style="--delay: 0s">
+                    <span class="badge-dot"></span>
+                    Open to opportunities · Chennai · Bengaluru · Coimbatore
+                </div>
+                <h1 class="hero-title">
+                    <span class="line reveal-up" style="--delay: 0.1s">Data Analyst</span>
+                    <span class="line reveal-up ampersand" style="--delay: 0.2s">&amp;</span>
+                    <span class="line reveal-up" style="--delay: 0.3s">MBA Candidate</span>
+                </h1>
+                <p class="hero-sub reveal-up" style="--delay: 0.4s">
+                    I'm Abei — MBA candidate finishing at SRMIST in 2026, specializing in Business Analytics. I've built churn prediction models, equity forecasting tools, and sentiment pipelines that actually got used. Looking for a Data or Business Analyst role in Chennai.
+                </p>
+                <div class="hero-actions reveal-up" style="--delay: 0.5s">
+                    <a href="#projects" class="btn-primary">
+                        <span>View Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn-ghost">Let's Talk</a>
+                </div>
+                <div class="hero-stats reveal-up" style="--delay: 0.6s">
+                    <div class="stat">
+                        <strong>9.26</strong><span>CGPA · MBA</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <strong>3</strong><span>Internships & Leadership</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <strong>17</strong><span>Certifications & Workshops</span>
+                    </div>
+                </div>
             </div>
-            <h1 class="hero-title">
-                <span class="line reveal-up" style="--delay: 0.1s">Data Analyst</span>
-                <span class="line reveal-up ampersand" style="--delay: 0.2s">&amp;</span>
-                <span class="line reveal-up" style="--delay: 0.3s">MBA Candidate</span>
-            </h1>
-            <p class="hero-sub reveal-up" style="--delay: 0.4s">
-                I'm Abei — MBA candidate finishing at SRMIST in 2026, specializing in Business Analytics. I've built churn prediction models, equity forecasting tools, and sentiment pipelines that actually got used. Looking for a Data or Business Analyst role in Chennai.
-            </p>
-            <div class="hero-actions reveal-up" style="--delay: 0.5s">
-                <a href="#projects" class="btn-primary">
-                    <span>View Work</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#contact" class="btn-ghost">Let's Talk</a>
-            </div>
-            <div class="hero-stats reveal-up" style="--delay: 0.6s">
-                <div class="stat">
-                    <strong>9.26</strong><span>CGPA · MBA</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <strong>3</strong><span>Internships & Leadership</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <strong>17</strong><span>Certifications & Workshops</span>
-                </div>
+            <div class="hero-profile reveal-up" style="--delay: 0.5s">
+                <div id="profileCardMount"></div>
             </div>
         </div>
     </header>
 
+    <section class="tagline-strip">
+        <div id="textPressureMount" class="text-pressure-mount"></div>
+    </section>
+
     <section class="skills-grid-container">
         <div class="container">
-            <div class="skills-matrix">
-                <div class="skills-group">
-                    <h4>Languages</h4>
-                    <ul>
-                        <li>Python</li>
-                        <li>SQL</li>
-                    </ul>
+            <div class="section-label reveal-up" style="color: rgba(255,255,255,0.5)">Stack</div>
+            <h2 class="section-heading reveal-up" style="color:#fff">Tools I reach for. <span class="muted" style="color:rgba(255,255,255,0.45)">Hover a card.</span></h2>
+            <div class="card-grid bento-section" id="magicBentoGrid">
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="26, 107, 255">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">Core</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">Languages</h2>
+                        <p class="magic-bento-card__description">Python, SQL</p>
+                    </div>
                 </div>
-                <div class="skills-group">
-                    <h4>BI & Viz</h4>
-                    <ul>
-                        <li>Power BI</li>
-                        <li>Tableau</li>
-                        <li>Matplotlib</li>
-                        <li>Seaborn</li>
-                    </ul>
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="255, 77, 77">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">Visualization</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">BI &amp; Viz</h2>
+                        <p class="magic-bento-card__description">Power BI, Tableau, Matplotlib, Seaborn</p>
+                    </div>
                 </div>
-                <div class="skills-group">
-                    <h4>Libraries</h4>
-                    <ul>
-                        <li>Pandas</li>
-                        <li>NumPy</li>
-                        <li>Scikit-learn</li>
-                        <li>SHAP</li>
-                        <li>HuggingFace</li>
-                    </ul>
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="26, 107, 255">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">Modelling</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">Libraries</h2>
+                        <p class="magic-bento-card__description">Pandas, NumPy, Scikit-learn, SHAP, HuggingFace</p>
+                    </div>
                 </div>
-                <div class="skills-group">
-                    <h4>Databases</h4>
-                    <ul>
-                        <li>PostgreSQL</li>
-                        <li>MS Excel</li>
-                    </ul>
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="255, 77, 77">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">Storage</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">Databases</h2>
+                        <p class="magic-bento-card__description">PostgreSQL, MS Excel</p>
+                    </div>
                 </div>
-                <div class="skills-group">
-                    <h4>Other</h4>
-                    <ul>
-                        <li>EDA</li>
-                        <li>Statistical Modelling</li>
-                        <li>XGBoost</li>
-                        <li>Random Forest</li>
-                    </ul>
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="26, 107, 255">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">Method</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">Other</h2>
+                        <p class="magic-bento-card__description">EDA, Statistical Modelling, XGBoost, Random Forest</p>
+                    </div>
+                </div>
+                <div class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow" data-glow="255, 77, 77">
+                    <div class="magic-bento-card__header">
+                        <div class="magic-bento-card__label">In Progress</div>
+                    </div>
+                    <div class="magic-bento-card__content">
+                        <h2 class="magic-bento-card__title">Cloud Computing</h2>
+                        <p class="magic-bento-card__description">MindLuster</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -470,5 +497,6 @@
             });
         });
     </script>
+    <script src="components.js?v=1.0.1" defer></script>
 </body>
 </html>
