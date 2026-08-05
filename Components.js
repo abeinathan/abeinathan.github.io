@@ -1,571 +1,395 @@
 /* ═══════════════════════════════════════════════════════════
-   React Bits components, ported to plain JS/DOM for a static site.
-   Ported: DotField, LineSidebar, MagicBento, ProfileCard, TextPressure
+   ABEI NATHAN — FLUID INTERACTIVE ENGINE (components_new.js)
+   Features:
+   1. Dynamic Custom Dual-Cursor (Ring + Dot with LERP fluid inertia)
+   2. Ultra-Fluid Spring Physics Dot Scatter Canvas
+   3. Magnetic Button Hover (Proximity Attraction Physics)
+   4. Weight-Hover Variable Font Fluid Morphing
+   5. Ripple & Multi-Particle Burst Click Engine
+   6. 3D Parallax Tilt Cards with Dynamic Lighting
+   7. Text Pressure Fluid Character Scaling
+   8. Line Sidebar Scroll Observer & Mobile Navigation Drawer
    ═══════════════════════════════════════════════════════════ */
+
 (function () {
   'use strict';
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── 1. DOTFIELD ───────────────────────────────────────── */
-  function initDotField(mount, opts) {
+  // LERP Helper Function for Fluid Motion
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  /* ── 1. FLUID CUSTOM DUAL-CURSOR WITH LERP INERTIA ──────── */
+  function initFluidCursor() {
+    if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+
+    var dot = document.createElement('div');
+    dot.className = 'fluid-cursor-dot';
+    var ring = document.createElement('div');
+    ring.className = 'fluid-cursor-ring';
+
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    var mouse = { x: -100, y: -100 };
+    var dotPos = { x: -100, y: -100 };
+    var ringPos = { x: -100, y: -100 };
+
+    window.addEventListener('mousemove', function (e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    // Hover state expanding ring on interactive elements
+    var interactiveSelectors = 'a, button, .click-effect, .feature-card, .flip-card, .magic-bento-card, .weight-hover';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest(interactiveSelectors)) {
+        ring.classList.add('cursor-hover');
+        dot.classList.add('cursor-hover');
+      }
+    });
+
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest(interactiveSelectors)) {
+        ring.classList.remove('cursor-hover');
+        dot.classList.remove('cursor-hover');
+      }
+    });
+
+    function renderCursor() {
+      // Immediate dot placement, smooth trailing ring lerp
+      dotPos.x = lerp(dotPos.x, mouse.x, 0.4);
+      dotPos.y = lerp(dotPos.y, mouse.y, 0.4);
+
+      ringPos.x = lerp(ringPos.x, mouse.x, 0.15);
+      ringPos.y = lerp(ringPos.y, mouse.y, 0.15);
+
+      dot.style.transform = 'translate3d(' + dotPos.x + 'px, ' + dotPos.y + 'px, 0)';
+      ring.style.transform = 'translate3d(' + ringPos.x + 'px, ' + ringPos.y + 'px, 0)';
+
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+  }
+
+  /* ── 2. ULTRA-FLUID SPRING PHYSICS DOT SCATTER ───────────── */
+  function initFluidDotScatter(mount) {
     if (!mount) return;
-    opts = opts || {};
-    var dotRadius = opts.dotRadius || 1.6;
-    var dotSpacing = opts.dotSpacing || 15;
-    var cursorRadius = opts.cursorRadius || 180;
-    var bulgeStrength = opts.bulgeStrength || 40;
-    var glowRadius = opts.glowRadius || 160;
-    var gradientFrom = opts.gradientFrom || 'rgba(26, 107, 255, 0.22)';
-    var gradientTo = opts.gradientTo || 'rgba(255, 77, 77, 0.14)';
-    var glowColor = opts.glowColor || '#1a6bff';
 
     var canvas = document.createElement('canvas');
     canvas.style.position = 'absolute';
     canvas.style.inset = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
     mount.appendChild(canvas);
 
-    if (reduceMotion) return; // keep it static/absent for reduced motion users
-
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.style.position = 'absolute';
-    svg.style.inset = '0';
-    svg.style.width = '100%';
-    svg.style.height = '100%';
-    svg.style.pointerEvents = 'none';
-    var glowId = 'dot-field-glow-' + Math.random().toString(36).slice(2, 9);
-    svg.innerHTML =
-      '<defs><radialGradient id="' + glowId + '">' +
-      '<stop offset="0%" stop-color="' + glowColor + '"/>' +
-      '<stop offset="100%" stop-color="transparent"/></radialGradient></defs>' +
-      '<circle cx="-9999" cy="-9999" r="' + glowRadius + '" fill="url(#' + glowId + ')" style="opacity:0"></circle>';
-    mount.appendChild(svg);
-    var glowEl = svg.querySelector('circle');
+    if (reduceMotion) return;
 
     var ctx = canvas.getContext('2d', { alpha: true });
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var dots = [];
-    var size = { w: 0, h: 0, offsetX: 0, offsetY: 0 };
-    var mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
-    var glowOpacity = 0, engagement = 0, frameCount = 0, rafId, resizeTimer;
+    var size = { w: 0, h: 0 };
+    var mouse = { x: -9999, y: -9999, radius: 180, strength: 55 };
 
     function buildDots(w, h) {
-      var step = dotRadius + dotSpacing;
+      var step = 20;
       var cols = Math.floor(w / step);
       var rows = Math.floor(h / step);
       var padX = (w % step) / 2;
       var padY = (h % step) / 2;
       dots = [];
-      for (var row = 0; row < rows; row++) {
-        for (var col = 0; col < cols; col++) {
-          var ax = padX + col * step + step / 2;
-          var ay = padY + row * step + step / 2;
-          dots.push({ ax: ax, ay: ay, sx: ax, sy: ay });
+
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          var ax = padX + c * step + step / 2;
+          var ay = padY + r * step + step / 2;
+          dots.push({
+            ax: ax, ay: ay,
+            x: ax, y: ay,
+            vx: 0, vy: 0,
+            baseRadius: 1.5,
+            radius: 1.5,
+            targetRadius: 1.5
+          });
         }
       }
     }
 
-    function doResize() {
-      var rect = mount.getBoundingClientRect();
-      var w = rect.width, h = rect.height;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      size = { w: w, h: h, offsetX: rect.left + window.scrollX, offsetY: rect.top + window.scrollY };
-      buildDots(w, h);
-    }
     function resize() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(doResize, 100);
+      var rect = mount.getBoundingClientRect();
+      size.w = rect.width;
+      size.h = rect.height;
+      canvas.width = size.w * dpr;
+      canvas.height = size.h * dpr;
+      canvas.style.width = size.w + 'px';
+      canvas.style.height = size.h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildDots(size.w, size.h);
     }
 
-    function onMouseMove(e) {
-      mouse.x = e.pageX - size.offsetX;
-      mouse.y = e.pageY - size.offsetY;
-    }
-
-    var speedInterval = setInterval(function () {
-      var dx = mouse.prevX - mouse.x, dy = mouse.prevY - mouse.y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      mouse.speed += (dist - mouse.speed) * 0.5;
-      if (mouse.speed < 0.001) mouse.speed = 0;
-      mouse.prevX = mouse.x; mouse.prevY = mouse.y;
-    }, 20);
-
-    function tick() {
-      frameCount++;
-      var w = size.w, h = size.h, len = dots.length;
-      var targetEngagement = Math.min(mouse.speed / 5, 1);
-      engagement += (targetEngagement - engagement) * 0.06;
-      if (engagement < 0.001) engagement = 0;
-      glowOpacity += (engagement - glowOpacity) * 0.08;
-
-      if (glowEl) {
-        glowEl.setAttribute('cx', mouse.x);
-        glowEl.setAttribute('cy', mouse.y);
-        glowEl.style.opacity = glowOpacity;
-      }
-
-      ctx.clearRect(0, 0, w, h);
-      var grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, gradientFrom);
-      grad.addColorStop(1, gradientTo);
-      ctx.fillStyle = grad;
-
-      var crSq = cursorRadius * cursorRadius;
-      var rad = dotRadius / 2;
-      ctx.beginPath();
-      for (var i = 0; i < len; i++) {
-        var d = dots[i];
-        var dx = mouse.x - d.ax, dy = mouse.y - d.ay;
-        var distSq = dx * dx + dy * dy;
-        if (distSq < crSq && engagement > 0.01) {
-          var dist = Math.sqrt(distSq);
-          var t = 1 - dist / cursorRadius;
-          var push = t * t * bulgeStrength * engagement;
-          var angle = Math.atan2(dy, dx);
-          d.sx += (d.ax - Math.cos(angle) * push - d.sx) * 0.15;
-          d.sy += (d.ay - Math.sin(angle) * push - d.sy) * 0.15;
-        } else {
-          d.sx += (d.ax - d.sx) * 0.1;
-          d.sy += (d.ay - d.sy) * 0.1;
-        }
-        ctx.moveTo(d.sx + rad, d.sy);
-        ctx.arc(d.sx, d.sy, rad, 0, Math.PI * 2);
-      }
-      ctx.fill();
-      rafId = requestAnimationFrame(tick);
-    }
-
-    doResize();
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    rafId = requestAnimationFrame(tick);
-  }
+    resize();
 
-  /* ── 2. LINESIDEBAR ────────────────────────────────────── */
-  function initLineSidebar(mount, items) {
-    if (!mount) return;
-    var falloff = function (p) { return p * p * (3 - 2 * p); }; // smooth
-    var proximityRadius = 90;
-
-    var nav = document.createElement('nav');
-    nav.className = 'line-sidebar line-sidebar--markers';
-    var ul = document.createElement('ul');
-    ul.className = 'line-sidebar__list';
-    nav.appendChild(ul);
-    mount.appendChild(nav);
-
-    var lis = items.map(function (item, index) {
-      var li = document.createElement('li');
-      li.className = 'line-sidebar__item';
-      li.innerHTML =
-        '<span class="line-sidebar__marker" aria-hidden="true"></span>' +
-        '<span class="line-sidebar__label">' +
-        '<span class="line-sidebar__index">' + String(index + 1).padStart(2, '0') + '</span>' +
-        '<span class="line-sidebar__text">' + item.label + '</span></span>';
-      li.style.setProperty('--effect', '0');
-      li.addEventListener('click', function () {
-        var target = document.querySelector(item.href);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      ul.appendChild(li);
-      return li;
+    window.addEventListener('mousemove', function (e) {
+      var rect = mount.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
     });
 
-    var targets = items.map(function () { return 0; });
-    var current = items.map(function () { return 0; });
-    var activeIndex = 0;
-    var rafId = null;
-
-    function runFrame() {
-      var moving = false;
-      for (var i = 0; i < lis.length; i++) {
-        var target = Math.max(targets[i] || 0, activeIndex === i ? 1 : 0);
-        var cur = current[i];
-        var next = cur + (target - cur) * 0.18;
-        var settled = Math.abs(target - next) < 0.0015;
-        var value = settled ? target : next;
-        current[i] = value;
-        lis[i].style.setProperty('--effect', value.toFixed(4));
-        if (!settled) moving = true;
-      }
-      rafId = moving ? requestAnimationFrame(runFrame) : null;
-    }
-    function startLoop() { if (rafId == null) rafId = requestAnimationFrame(runFrame); }
-
-    if (!reduceMotion) {
-      ul.addEventListener('pointermove', function (e) {
-        var rect = ul.getBoundingClientRect();
-        var pointerY = e.clientY - rect.top;
-        for (var i = 0; i < lis.length; i++) {
-          var el = lis[i];
-          var center = el.offsetTop + el.offsetHeight / 2;
-          var distance = Math.abs(pointerY - center);
-          targets[i] = falloff(Math.max(0, 1 - distance / proximityRadius));
-        }
-        startLoop();
-      });
-      ul.addEventListener('pointerleave', function () {
-        targets = targets.map(function () { return 0; });
-        startLoop();
-      });
-    }
-
-    // sync active state with scroll position via IntersectionObserver
-    var sections = items.map(function (item) { return document.querySelector(item.href); }).filter(Boolean);
-    if ('IntersectionObserver' in window && sections.length) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var idx = sections.indexOf(entry.target);
-            if (idx !== -1) {
-              activeIndex = idx;
-              lis.forEach(function (li, i) { li.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
-              startLoop();
-            }
-          }
-        });
-      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-      sections.forEach(function (s) { observer.observe(s); });
-    }
-  }
-
-  /* ── 3. MAGIC BENTO (skills section) ──────────────────── */
-  function initMagicBento(grid) {
-    if (!grid) return;
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('.magic-bento-card'));
-    if (!cards.length) return;
-
-    var spotlightRadius = 260;
-    var particleCount = 8;
-    var spotlight = null;
-
-    if (!reduceMotion) {
-      spotlight = document.createElement('div');
-      spotlight.className = 'global-mb-spotlight';
-      document.body.appendChild(spotlight);
-    }
-
-    cards.forEach(function (card) {
-      var glow = card.getAttribute('data-glow') || '26, 107, 255';
-      card.style.setProperty('--glow-color', glow);
-      var particles = [];
-      var particleTimers = [];
-      var isHovered = false;
-
-      function spawnParticles() {
-        for (var i = 0; i < particleCount; i++) {
-          (function (index) {
-            var timer = setTimeout(function () {
-              if (!isHovered) return;
-              var rect = card.getBoundingClientRect();
-              var p = document.createElement('div');
-              p.className = 'mb-particle';
-              p.style.left = (Math.random() * rect.width) + 'px';
-              p.style.top = (Math.random() * rect.height) + 'px';
-              p.style.background = 'rgba(' + glow + ', 1)';
-              p.style.boxShadow = '0 0 6px rgba(' + glow + ', 0.6)';
-              p.style.opacity = '0';
-              p.style.transform = 'scale(0)';
-              card.appendChild(p);
-              particles.push(p);
-              requestAnimationFrame(function () {
-                p.style.opacity = '0.8';
-                p.style.transform = 'translate(' + ((Math.random() - 0.5) * 50) + 'px,' + ((Math.random() - 0.5) * 50) + 'px) scale(1)';
-              });
-            }, index * 90);
-            particleTimers.push(timer);
-          })(i);
-        }
-      }
-      function clearParticles() {
-        particleTimers.forEach(clearTimeout);
-        particleTimers = [];
-        particles.forEach(function (p) {
-          p.style.opacity = '0';
-          p.style.transform += ' scale(0)';
-          setTimeout(function () { p.remove(); }, 300);
-        });
-        particles = [];
-      }
-
-      card.addEventListener('mouseenter', function () {
-        isHovered = true;
-        if (!reduceMotion) spawnParticles();
-      });
-      card.addEventListener('mouseleave', function () {
-        isHovered = false;
-        clearParticles();
-      });
-      card.addEventListener('click', function (e) {
-        if (reduceMotion) return;
-        var rect = card.getBoundingClientRect();
-        var x = e.clientX - rect.left, y = e.clientY - rect.top;
-        var maxDistance = Math.max(
-          Math.hypot(x, y), Math.hypot(x - rect.width, y),
-          Math.hypot(x, y - rect.height), Math.hypot(x - rect.width, y - rect.height)
-        );
-        var ripple = document.createElement('div');
-        ripple.className = 'mb-ripple';
-        ripple.style.width = ripple.style.height = (maxDistance * 2) + 'px';
-        ripple.style.left = (x - maxDistance) + 'px';
-        ripple.style.top = (y - maxDistance) + 'px';
-        ripple.style.background = 'radial-gradient(circle, rgba(' + glow + ',0.4) 0%, rgba(' + glow + ',0.15) 35%, transparent 70%)';
-        card.appendChild(ripple);
-        requestAnimationFrame(function () {
-          ripple.style.transform = 'scale(1)';
-          ripple.style.opacity = '0';
-        });
-        setTimeout(function () { ripple.remove(); }, 850);
-      });
+    document.addEventListener('mouseleave', function () {
+      mouse.x = -9999;
+      mouse.y = -9999;
     });
 
-    if (!reduceMotion) {
-      document.addEventListener('mousemove', function (e) {
-        var section = grid.closest('.bento-section') || grid;
-        var rect = section.getBoundingClientRect();
-        var inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+    function render() {
+      ctx.clearRect(0, 0, size.w, size.h);
 
-        if (!inside) {
-          spotlight.style.opacity = '0';
-          cards.forEach(function (c) { c.style.setProperty('--glow-intensity', '0'); });
-          return;
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var dx = mouse.x - d.ax;
+        var dy = mouse.y - d.ay;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+
+        // Fluid spring repulsion
+        if (dist < mouse.radius && dist > 0) {
+          var force = (1 - dist / mouse.radius) * mouse.strength;
+          var angle = Math.atan2(dy, dx);
+          var tx = d.ax - Math.cos(angle) * force;
+          var ty = d.ay - Math.sin(angle) * force;
+          d.vx += (tx - d.x) * 0.12;
+          d.vy += (ty - d.y) * 0.12;
+          d.targetRadius = 1.5 + (1 - dist / mouse.radius) * 2.5;
+        } else {
+          d.vx += (d.ax - d.x) * 0.06;
+          d.vy += (d.ay - d.y) * 0.06;
+          d.targetRadius = d.baseRadius;
         }
 
-        var proximity = spotlightRadius * 0.5;
-        var fadeDistance = spotlightRadius * 0.75;
-        var minDistance = Infinity;
+        d.vx *= 0.85;
+        d.vy *= 0.85;
+        d.x += d.vx;
+        d.y += d.vy;
+        d.radius = lerp(d.radius, d.targetRadius, 0.15);
 
-        cards.forEach(function (card) {
-          var cardRect = card.getBoundingClientRect();
-          var centerX = cardRect.left + cardRect.width / 2;
-          var centerY = cardRect.top + cardRect.height / 2;
-          var distance = Math.hypot(e.clientX - centerX, e.clientY - centerY) - Math.max(cardRect.width, cardRect.height) / 2;
-          var effectiveDistance = Math.max(0, distance);
-          minDistance = Math.min(minDistance, effectiveDistance);
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
 
-          var glowIntensity = 0;
-          if (effectiveDistance <= proximity) glowIntensity = 1;
-          else if (effectiveDistance <= fadeDistance) glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
+        if (dist < mouse.radius) {
+          var alpha = 0.25 + (1 - dist / mouse.radius) * 0.7;
+          ctx.fillStyle = 'rgba(163, 230, 53, ' + alpha + ')'; // Fluid Lime
+        } else {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+        }
+        ctx.fill();
+      }
 
-          var relX = ((e.clientX - cardRect.left) / cardRect.width) * 100;
-          var relY = ((e.clientY - cardRect.top) / cardRect.height) * 100;
-          card.style.setProperty('--glow-x', relX + '%');
-          card.style.setProperty('--glow-y', relY + '%');
-          card.style.setProperty('--glow-intensity', glowIntensity.toString());
-          card.style.setProperty('--glow-radius', spotlightRadius + 'px');
-        });
-
-        spotlight.style.left = e.clientX + 'px';
-        spotlight.style.top = e.clientY + 'px';
-        var targetOpacity = minDistance <= proximity ? 0.7 :
-          (minDistance <= fadeDistance ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.7 : 0);
-        spotlight.style.background = 'radial-gradient(circle, rgba(' + '26,107,255' + ',0.13) 0%, rgba(255,77,77,0.06) 35%, transparent 70%)';
-        spotlight.style.opacity = targetOpacity.toString();
-      });
+      requestAnimationFrame(render);
     }
+    render();
   }
 
-  /* ── 4. PROFILE CARD ──────────────────────────────────── */
-  function initProfileCard(mount, data) {
-    if (!mount) return;
-    var wrap = document.createElement('div');
-    wrap.className = 'pc-card-wrapper';
-    wrap.innerHTML =
-      '<div class="pc-behind"></div>' +
-      '<div class="pc-card-shell">' +
-        '<section class="pc-card">' +
-          '<div class="pc-inside">' +
-            '<div class="pc-glare"></div>' +
-            '<div class="pc-content pc-avatar-content">' +
-              '<img class="avatar" src="' + data.avatarUrl + '" alt="' + data.name + ' avatar" loading="lazy">' +
-              '<div class="pc-user-info">' +
-                '<div class="pc-user-details">' +
-                  '<div class="pc-mini-avatar"><img src="' + data.avatarUrl + '" alt="' + data.name + ' mini avatar" loading="lazy"></div>' +
-                  '<div class="pc-user-text"><div class="pc-handle">@' + data.handle + '</div><div class="pc-status">' + data.status + '</div></div>' +
-                '</div>' +
-                '<button class="pc-contact-btn" type="button" aria-label="Contact ' + data.name + '">' + data.contactText + '</button>' +
-              '</div>' +
-            '</div>' +
-            '<div class="pc-content"><div class="pc-details"><h3>' + data.name + '</h3><p>' + data.title + '</p></div></div>' +
-          '</div>' +
-        '</section>' +
-      '</div>';
-    mount.appendChild(wrap);
+  /* ── 3. MAGNETIC BUTTON HOVER PHYSICS ───────────────────── */
+  function initMagneticButtons() {
+    if (reduceMotion) return;
+    var elements = document.querySelectorAll('.btn-magnetic, .nav-item-link, .btn-primary, .btn-ghost');
 
-    var shell = wrap.querySelector('.pc-card-shell');
-    var btn = wrap.querySelector('.pc-contact-btn');
-    btn.addEventListener('click', function () { if (data.onContactClick) data.onContactClick(); });
+    elements.forEach(function (el) {
+      var bounding = el.getBoundingClientRect();
 
+      el.addEventListener('mousemove', function (e) {
+        var rect = el.getBoundingClientRect();
+        var x = e.clientX - (rect.left + rect.width / 2);
+        var y = e.clientY - (rect.top + rect.height / 2);
+
+        el.style.transform = 'translate3d(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px, 0) scale(1.04)';
+        el.style.transition = 'transform 0.1s ease-out';
+      });
+
+      el.addEventListener('mouseleave', function () {
+        el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      });
+    });
+  }
+
+  /* ── 4. WEIGHT-HOVER VARIABLE FONT MORPHING ──────────────── */
+  function initWeightHover() {
+    if (reduceMotion) return;
+    var targets = document.querySelectorAll('.weight-hover');
+
+    targets.forEach(function (el) {
+      el.style.transition = 'font-weight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, letter-spacing 0.3s ease';
+
+      el.addEventListener('mouseenter', function () {
+        this.style.fontWeight = '800';
+        this.style.letterSpacing = '0.02em';
+      });
+
+      el.addEventListener('mouseleave', function () {
+        this.style.fontWeight = '';
+        this.style.letterSpacing = '';
+      });
+    });
+  }
+
+  /* ── 5. RIPPLE & MULTI-PARTICLE BURST CLICK ───────────────── */
+  function initFluidClickEffects() {
     if (reduceMotion) return;
 
-    var clamp = function (v, min, max) { return Math.min(Math.max(v, min == null ? 0 : min), max == null ? 100 : max); };
-    var round = function (v, p) { p = p || 3; return parseFloat(v.toFixed(p)); };
-    var adjust = function (v, fMin, fMax, tMin, tMax) { return round(tMin + ((tMax - tMin) * (v - fMin)) / (fMax - fMin)); };
+    document.addEventListener('click', function (e) {
+      var target = e.target.closest('.click-effect, a, button, .feature-card, .flip-card');
+      if (!target) return;
 
-    var currentX = 0, currentY = 0, targetX = 0, targetY = 0;
-    var rafId = null, lastTs = 0, running = false;
+      var x = e.clientX;
+      var y = e.clientY;
 
-    function setVarsFromXY(x, y) {
-      var width = shell.clientWidth || 1, height = shell.clientHeight || 1;
-      var percentX = clamp((100 / width) * x);
-      var percentY = clamp((100 / height) * y);
-      var centerX = percentX - 50, centerY = percentY - 50;
-      var props = {
-        '--pointer-x': percentX + '%',
-        '--pointer-y': percentY + '%',
-        '--background-x': adjust(percentX, 0, 100, 35, 65) + '%',
-        '--background-y': adjust(percentY, 0, 100, 35, 65) + '%',
-        '--pointer-from-center': clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1),
-        '--pointer-from-top': percentY / 100,
-        '--pointer-from-left': percentX / 100,
-        '--rotate-x': round(-(centerX / 5)) + 'deg',
-        '--rotate-y': round(centerY / 4) + 'deg'
-      };
-      for (var k in props) wrap.style.setProperty(k, props[k]);
-    }
+      // Particle explosion
+      for (var i = 0; i < 10; i++) {
+        var p = document.createElement('div');
+        p.className = 'fluid-particle';
+        document.body.appendChild(p);
 
-    function step(ts) {
-      if (!running) return;
-      if (lastTs === 0) lastTs = ts;
-      var dt = (ts - lastTs) / 1000;
-      lastTs = ts;
-      var k = 1 - Math.exp(-dt / 0.14);
-      currentX += (targetX - currentX) * k;
-      currentY += (targetY - currentY) * k;
-      setVarsFromXY(currentX, currentY);
-      var stillFar = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05;
-      if (stillFar) { rafId = requestAnimationFrame(step); }
-      else { running = false; lastTs = 0; if (rafId) cancelAnimationFrame(rafId); rafId = null; }
-    }
-    function start() { if (running) return; running = true; lastTs = 0; rafId = requestAnimationFrame(step); }
-    function setTarget(x, y) { targetX = x; targetY = y; start(); }
-    function toCenter() { setTarget(shell.clientWidth / 2, shell.clientHeight / 2); }
+        var angle = (Math.PI * 2 / 10) * i + (Math.random() * 0.5 - 0.25);
+        var speed = 35 + Math.random() * 45;
+        var tx = Math.cos(angle) * speed;
+        var ty = Math.sin(angle) * speed;
 
-    shell.addEventListener('pointerenter', function (e) {
-      shell.classList.add('active', 'entering');
-      setTimeout(function () { shell.classList.remove('entering'); }, 180);
-      var rect = shell.getBoundingClientRect();
-      setTarget(e.clientX - rect.left, e.clientY - rect.top);
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        p.style.setProperty('--tx', tx + 'px');
+        p.style.setProperty('--ty', ty + 'px');
+
+        setTimeout((function (el) {
+          return function () { el.remove(); };
+        })(p), 550);
+      }
     });
-    shell.addEventListener('pointermove', function (e) {
-      var rect = shell.getBoundingClientRect();
-      setTarget(e.clientX - rect.left, e.clientY - rect.top);
-    });
-    shell.addEventListener('pointerleave', function () {
-      toCenter();
-      var checkSettle = function () {
-        var settled = Math.hypot(targetX - currentX, targetY - currentY) < 0.6;
-        if (settled) shell.classList.remove('active');
-        else requestAnimationFrame(checkSettle);
-      };
-      requestAnimationFrame(checkSettle);
-    });
-
-    var initialX = (shell.clientWidth || 0) - 70, initialY = 60;
-    currentX = initialX; currentY = initialY;
-    setVarsFromXY(currentX, currentY);
-    toCenter();
   }
 
-  /* ── 5. TEXT PRESSURE ─────────────────────────────────── */
+  /* ── 6. 3D PARALLAX TILT CARDS ───────────────────────────── */
+  function init3DParallaxCards() {
+    if (reduceMotion) return;
+    var cards = document.querySelectorAll('.feature-card, .magic-bento-card, .profile-card-3d');
+
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = (y - centerY) / 15;
+        var rotateY = (centerX - x) / 15;
+
+        card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-6px)';
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+      });
+
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      });
+    });
+  }
+
+  /* ── 7. TEXT PRESSURE FLUID MORPHING ─────────────────────── */
   function initTextPressure(mount, text) {
     if (!mount) return;
     var h1 = document.createElement('h1');
-    h1.className = 'text-pressure-title';
+    h1.className = 'text-pressure-title weight-hover';
     var chars = text.split('');
     var spans = chars.map(function (ch) {
       var span = document.createElement('span');
       span.textContent = ch === ' ' ? '\u00A0' : ch;
-      span.setAttribute('data-char', ch);
       return span;
     });
     spans.forEach(function (s) { h1.appendChild(s); });
     mount.appendChild(h1);
 
-    function setSize() {
-      var containerW = mount.getBoundingClientRect().width;
-      var newFontSize = Math.max(containerW / (chars.length / 2), 28);
-      h1.style.fontSize = newFontSize + 'px';
-    }
-    setSize();
-    window.addEventListener('resize', function () {
-      clearTimeout(mount._tpResize);
-      mount._tpResize = setTimeout(setSize, 100);
-    });
-
     if (reduceMotion) return;
 
-    var mouse = { x: 0, y: 0 }, cursor = { x: 0, y: 0 };
-    var rect = mount.getBoundingClientRect();
-    mouse.x = cursor.x = rect.left + rect.width / 2;
-    mouse.y = cursor.y = rect.top + rect.height / 2;
-
-    window.addEventListener('mousemove', function (e) { cursor.x = e.clientX; cursor.y = e.clientY; });
-    window.addEventListener('touchmove', function (e) {
-      var t = e.touches[0]; cursor.x = t.clientX; cursor.y = t.clientY;
-    }, { passive: true });
-
-    function dist(a, b) { return Math.hypot(b.x - a.x, b.y - a.y); }
-    function getAttr(distance, maxDist, minVal, maxVal) {
-      var val = maxVal - Math.abs((maxVal * distance) / maxDist);
-      return Math.max(minVal, val + minVal);
-    }
+    var cursor = { x: 0, y: 0 };
+    window.addEventListener('mousemove', function (e) {
+      cursor.x = e.clientX;
+      cursor.y = e.clientY;
+    });
 
     function animate() {
-      mouse.x += (cursor.x - mouse.x) / 15;
-      mouse.y += (cursor.y - mouse.y) / 15;
-      var titleRect = h1.getBoundingClientRect();
-      var maxDist = titleRect.width / 2;
       spans.forEach(function (span) {
         var r = span.getBoundingClientRect();
-        var center = { x: r.x + r.width / 2, y: r.y + r.height / 2 };
-        var d = dist(mouse, center);
-        var wdth = Math.floor(getAttr(d, maxDist, 25, 150));
-        var wght = Math.floor(getAttr(d, maxDist, 300, 900));
-        var settings = "'wght' " + wght + ", 'wdth' " + wdth;
-        if (span.style.fontVariationSettings !== settings) span.style.fontVariationSettings = settings;
+        var center = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+        var d = Math.hypot(cursor.x - center.x, cursor.y - center.y);
+        var wght = Math.max(300, Math.min(900, 900 - d * 1.5));
+        span.style.fontWeight = Math.round(wght);
       });
       requestAnimationFrame(animate);
     }
     requestAnimationFrame(animate);
   }
 
-  /* ── INIT ON DOM READY ────────────────────────────────── */
+  /* ── 8. PROFILE CARD MOUNT ───────────────────────────────── */
+  function initProfileCard(mount) {
+    if (!mount) return;
+    mount.innerHTML =
+      '<div class="profile-card-3d">' +
+        '<div class="profile-avatar-wrap">' +
+          '<div class="profile-avatar-ring"></div>' +
+          '<img src="data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">' +
+            '<rect width="600" height="600" fill="#0b0d14"/>' +
+            '<circle cx="300" cy="270" r="140" fill="#1e2436"/>' +
+            '<text x="300" y="315" font-family="Syne, sans-serif" font-size="130" font-weight="800" fill="#a3e635" text-anchor="middle">AN</text>' +
+            '</svg>'
+          ) + '" alt="Abei Nathan S K" class="profile-avatar-img">' +
+        '</div>' +
+        '<div class="text-center space-y-1">' +
+          '<h3 class="text-xl font-bold font-syne text-white weight-hover">Abei Nathan S K</h3>' +
+          '<p class="text-xs text-slate-400 font-geist">Data Analyst &amp; MBA Candidate</p>' +
+          '<div class="inline-flex items-center gap-1.5 px-3 py-1 mt-2 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 text-xs font-semibold">' +
+            '<span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span> Open to Opportunities' +
+          '</div>' +
+        '</div>' +
+        '<a href="mailto:skabeinathan@gmail.com" class="mt-6 w-full inline-flex justify-center items-center py-2.5 rounded-full bg-lime-400 text-black font-bold text-xs hover:bg-lime-300 transition-all click-effect">' +
+          'Email Me Direct' +
+        '</a>' +
+      '</div>';
+  }
+
+  /* ── INIT ON DOM READY ──────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
-    initDotField(document.getElementById('dotFieldMount'));
-
-    initLineSidebar(document.getElementById('lineSidebar'), [
-      { label: 'Projects', href: '#projects' },
-      { label: 'Experience', href: '#experience' },
-      { label: 'Education', href: '#education' },
-      { label: 'Certifications', href: '#certifications' },
-      { label: 'Contact', href: '#contact' }
-    ]);
-
-    initMagicBento(document.getElementById('magicBentoGrid'));
-
-    initProfileCard(document.getElementById('profileCardMount'), {
-      avatarUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">' +
-        '<rect width="600" height="750" fill="#0a0a0a"/>' +
-        '<circle cx="300" cy="290" r="150" fill="#15151a"/>' +
-        '<text x="300" y="335" font-family="Syne, sans-serif" font-size="150" font-weight="800" fill="#1a6bff" text-anchor="middle">AN</text>' +
-        '</svg>'
-      ),
-      name: 'S K Abei Nathan',
-      title: 'Data Analyst & MBA Candidate',
-      handle: 'abeinathan',
-      status: 'Open to opportunities',
-      contactText: 'Email Me',
-      onContactClick: function () { window.location.href = 'mailto:skabeinathan@gmail.com'; }
-    });
-
+    initFluidCursor();
+    initFluidDotScatter(document.getElementById('dotFieldMount'));
+    initMagneticButtons();
+    initWeightHover();
+    initFluidClickEffects();
+    init3DParallaxCards();
+    initProfileCard(document.getElementById('profileCardMount'));
     initTextPressure(document.getElementById('textPressureMount'), 'DATA · STRATEGY · IMPACT');
+
+    // Mobile Navbar Menu Toggle
+    var menuBtn = document.getElementById('mobileMenuBtn');
+    var mobileDropdown = document.getElementById('mobileDropdown');
+    if (menuBtn && mobileDropdown) {
+      menuBtn.addEventListener('click', function () {
+        mobileDropdown.classList.toggle('hidden');
+      });
+      mobileDropdown.querySelectorAll('a').forEach(function (l) {
+        l.addEventListener('click', function () { mobileDropdown.classList.add('hidden'); });
+      });
+    }
+
+    // Flip Card Click Handler
+    document.querySelectorAll('.flip-card').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (!e.target.closest('a')) {
+          card.classList.toggle('flipped');
+        }
+      });
+    });
   });
+
 })();
