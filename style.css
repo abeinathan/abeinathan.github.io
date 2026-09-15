@@ -34,11 +34,12 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  cursor: none; 
+  cursor: auto; /* Fallback to standard cursor if JS is blocked */
 }
 
-@media (max-width: 1024px) {
-  body { cursor: auto; }
+/* Added by JS if script execution is successful */
+body.no-cursor {
+  cursor: none;
 }
 
 /* ── 1. MODERN BLEND-MODE CURSOR SYSTEM ──────────────────── */
@@ -75,7 +76,7 @@ body {
 .fluid-cursor-ring.cursor-hover {
   width: 90px; height: 90px;
   top: -45px; left: -45px;
-  opacity: 0; /* Ring disappears smoothly on hover */
+  opacity: 0;
 }
 
 /* ── 2. NOISE & LIQUID AMBIENT BACKGROUND MORPHING ────────── */
@@ -118,17 +119,18 @@ body {
 
 /* ── 3. FLOATING GLASS PILL NAVBAR STYLING ────────────────── */
 .glass-pill-nav {
-  background: linear-gradient(180deg, rgba(14,16,26,0.7), rgba(14,16,26,0.45)) padding-box, 
+  /* Darkened Base Gradient to block text bleeding through */
+  background: linear-gradient(180deg, rgba(8,10,16,0.95), rgba(8,10,16,0.85)) padding-box, 
               linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0.08)) border-box;
   border: 1px solid transparent;
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
   transition: all 0.5s var(--ease-fluid);
 }
 
 .glass-pill-nav:hover {
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
   transform: translateY(-2px);
 }
 
@@ -141,7 +143,6 @@ body {
   background-color: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(16px);
   transform-style: preserve-3d;
-  /* Transform transition removed for JS LERP control */
   transition: border-color 0.4s ease, box-shadow 0.4s ease; 
 }
 
@@ -240,7 +241,21 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* ── 7. MAGIC BENTO CARD STYLING ─────────────────────────── */
+/* ── 7. TEXT PRESSURE TYPOGRAPHY ─────────────────────────── */
+.text-pressure-title {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--text-main);
+  letter-spacing: 2px;
+}
+.text-pressure-title span {
+  display: inline-block;
+  transition: font-weight 0.15s ease;
+}
+
+/* ── 8. MAGIC BENTO CARD STYLING ─────────────────────────── */
 .magic-bento-card {
   position: relative;
   background: rgba(255, 255, 255, 0.03);
@@ -274,10 +289,9 @@ body {
   border-color: rgba(163, 230, 53, 0.35);
 }
 
-/* ── 8. FLIP CARDS (DETAILED CASE STUDIES) ───────────────── */
+/* ── 9. FLIP CARDS (DETAILED CASE STUDIES) ───────────────── */
 .flip-card {
   perspective: 1000px;
-  cursor: none;
 }
 
 .flip-inner {
@@ -318,7 +332,7 @@ body {
   border-color: rgba(163, 230, 53, 0.4);
 }
 
-/* ── 9. REVEAL SCROLL ANIMATIONS ─────────────────────────── */
+/* ── 10. REVEAL SCROLL ANIMATIONS ─────────────────────────── */
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
