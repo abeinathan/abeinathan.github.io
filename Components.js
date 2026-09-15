@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   ABEI NATHAN — FLUID INTERACTIVE ENGINE (components_new.js)
+   ABEI NATHAN — FLUID INTERACTIVE ENGINE (Components.js)
    ═══════════════════════════════════════════════════════════ */
 
 (function () {
@@ -7,7 +7,6 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // LERP Helper Function for buttery fluid motion
   function lerp(start, end, factor) {
     return start + (end - start) * factor;
   }
@@ -15,6 +14,9 @@
   /* ── 1. FLUID CUSTOM DUAL-CURSOR WITH LERP INERTIA ──────── */
   function initFluidCursor() {
     if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+
+    // Apply fail-safe hide default cursor class 
+    document.body.classList.add('no-cursor');
 
     var dot = document.createElement('div');
     dot.className = 'fluid-cursor-dot';
@@ -176,7 +178,7 @@
     render();
   }
 
-  /* ── 3. MAGNETIC BUTTON HOVER PHYSICS (LERP OVERHAUL) ──────── */
+  /* ── 3. MAGNETIC BUTTON HOVER PHYSICS ──────── */
   function initMagneticButtons() {
     if (reduceMotion) return;
     var elements = document.querySelectorAll('.btn-magnetic, .nav-item-link');
@@ -264,7 +266,7 @@
     });
   }
 
-  /* ── 6. 3D PARALLAX TILT CARDS (LERP OVERHAUL) ────────────── */
+  /* ── 6. 3D PARALLAX TILT CARDS ────────────── */
   function init3DParallaxCards() {
     if (reduceMotion) return;
     var cards = document.querySelectorAll('.feature-card, .magic-bento-card, .profile-card-3d');
@@ -325,20 +327,10 @@
   }
 
   /* ── 7. TEXT PRESSURE FLUID MORPHING ─────────────────────── */
-  function initTextPressure(mount, text) {
-    if (!mount) return;
-    var h1 = document.createElement('h1');
-    h1.className = 'text-pressure-title weight-hover';
-    var chars = text.split('');
-    var spans = chars.map(function (ch) {
-      var span = document.createElement('span');
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
-      return span;
-    });
-    spans.forEach(function (s) { h1.appendChild(s); });
-    mount.appendChild(h1);
-
+  function initTextPressure() {
     if (reduceMotion) return;
+    var spans = document.querySelectorAll('#textPressureTitle span');
+    if (!spans.length) return;
 
     var cursor = { x: 0, y: 0 };
     window.addEventListener('mousemove', function (e) {
@@ -359,34 +351,6 @@
     requestAnimationFrame(animate);
   }
 
-  /* ── 8. PROFILE CARD MOUNT ───────────────────────────────── */
-  function initProfileCard(mount) {
-    if (!mount) return;
-    mount.innerHTML =
-      '<div class="profile-card-3d">' +
-        '<div class="profile-avatar-wrap">' +
-          '<div class="profile-avatar-ring"></div>' +
-          '<img src="data:image/svg+xml;utf8,' + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">' +
-            '<rect width="600" height="600" fill="#0b0d14"/>' +
-            '<circle cx="300" cy="270" r="140" fill="#1e2436"/>' +
-            '<text x="300" y="315" font-family="Syne, sans-serif" font-size="130" font-weight="800" fill="#ffffff" text-anchor="middle">AN</text>' +
-            '</svg>'
-          ) + '" alt="Abei Nathan S K" class="profile-avatar-img">' +
-        '</div>' +
-        '<div class="text-center space-y-1">' +
-          '<h3 class="text-xl font-bold font-syne text-white weight-hover">Abei Nathan S K</h3>' +
-          '<p class="text-xs text-slate-400 font-geist">Data Analyst &amp; MBA Candidate</p>' +
-          '<div class="inline-flex items-center gap-1.5 px-3 py-1 mt-2 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 text-xs font-semibold">' +
-            '<span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span> Open to Opportunities' +
-          '</div>' +
-        '</div>' +
-        '<a href="mailto:skabeinathan@gmail.com" class="mt-6 w-full inline-flex justify-center items-center py-2.5 rounded-full bg-lime-400 text-black font-bold text-xs hover:bg-lime-300 transition-all click-effect">' +
-          'Email Me Direct' +
-        '</a>' +
-      '</div>';
-  }
-
   /* ── INIT ON DOM READY ──────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initFluidCursor();
@@ -395,8 +359,7 @@
     initWeightHover();
     initFluidClickEffects();
     init3DParallaxCards();
-    initProfileCard(document.getElementById('profileCardMount'));
-    initTextPressure(document.getElementById('textPressureMount'), 'DATA · STRATEGY · IMPACT');
+    initTextPressure();
 
     var menuBtn = document.getElementById('mobileMenuBtn');
     var mobileDropdown = document.getElementById('mobileDropdown');
