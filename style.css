@@ -1,11 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   ABEI NATHAN S K — ULTRA-FLUID PORTFOLIO DESIGN SYSTEM (style_new.css)
-   Includes:
-   - Liquid ambient background morphing keyframes
-   - Dual-cursor lag inertia rings
-   - Floating Glass Pill Navbar with multi-layered specular reflections
-   - Feature card grid rounded-3xl with lime-400 glowing hover border
-   - Fluid keyframe spring reveals
+   ABEI NATHAN S K — ULTRA-FLUID PORTFOLIO DESIGN SYSTEM 
    ═══════════════════════════════════════════════════════════ */
 
 :root {
@@ -18,8 +12,8 @@
   --text-muted:    #94a3b8;
   --font-display:  'Syne', 'Geist', sans-serif;
   --font-body:     'DM Sans', 'Roboto Flex', sans-serif;
-  --ease-fluid:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-fluid:    cubic-bezier(0.25, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 *, *::before, *::after {
@@ -40,49 +34,48 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  cursor: none; /* Custom fluid cursor active */
+  cursor: none; 
 }
 
 @media (max-width: 1024px) {
   body { cursor: auto; }
 }
 
-/* ── 1. DUAL FLUID CURSOR SYSTEM ─────────────────────────── */
+/* ── 1. MODERN BLEND-MODE CURSOR SYSTEM ──────────────────── */
 .fluid-cursor-dot {
   position: fixed;
   top: -4px; left: -4px;
   width: 8px; height: 8px;
-  background-color: var(--accent-lime);
+  background-color: #ffffff;
+  mix-blend-mode: difference;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  box-shadow: 0 0 12px var(--accent-lime);
-  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  transition: width 0.4s var(--ease-spring), height 0.4s var(--ease-spring), top 0.4s var(--ease-spring), left 0.4s var(--ease-spring), background-color 0.4s ease;
 }
 
 .fluid-cursor-ring {
   position: fixed;
-  top: -20px; left: -20px;
-  width: 40px; height: 40px;
-  border: 1.5px solid rgba(163, 230, 53, 0.4);
+  top: -16px; left: -16px;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  mix-blend-mode: difference;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
-  transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring), border-color 0.3s ease;
-}
-
-.fluid-cursor-ring.cursor-hover {
-  width: 60px; height: 60px;
-  top: -30px; left: -30px;
-  border-color: rgba(163, 230, 53, 0.8);
-  background: rgba(163, 230, 53, 0.05);
-  backdrop-filter: blur(2px);
+  transition: width 0.3s var(--ease-fluid), height 0.3s var(--ease-fluid), top 0.3s var(--ease-fluid), left 0.3s var(--ease-fluid), opacity 0.3s ease;
 }
 
 .fluid-cursor-dot.cursor-hover {
-  width: 12px; height: 12px;
-  top: -6px; left: -6px;
+  width: 64px; height: 64px;
+  top: -32px; left: -32px;
   background-color: #ffffff;
+}
+
+.fluid-cursor-ring.cursor-hover {
+  width: 90px; height: 90px;
+  top: -45px; left: -45px;
+  opacity: 0; /* Ring disappears smoothly on hover */
 }
 
 /* ── 2. NOISE & LIQUID AMBIENT BACKGROUND MORPHING ────────── */
@@ -131,7 +124,7 @@ body {
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   box-shadow: 0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-  transition: all 0.4s var(--ease-fluid);
+  transition: all 0.5s var(--ease-fluid);
 }
 
 .glass-pill-nav:hover {
@@ -139,16 +132,17 @@ body {
   transform: translateY(-2px);
 }
 
-/* ── 4. FEATURE CARD SECTION (DESIGN 2 INTEGRATION) ──────── */
+/* ── 4. FEATURE CARD SECTION ─────────────────────────────── */
 .feature-card {
   position: relative;
   overflow: hidden;
-  border-radius: 1.75rem; /* rounded-3xl */
+  border-radius: 1.75rem; 
   border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(16px);
   transform-style: preserve-3d;
-  transition: border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+  /* Transform transition removed for JS LERP control */
+  transition: border-color 0.4s ease, box-shadow 0.4s ease; 
 }
 
 .feature-card::before {
@@ -191,18 +185,12 @@ body {
   pointer-events: none;
   z-index: 99999;
   box-shadow: 0 0 10px var(--accent-lime);
-  animation: particlePop 0.55s ease-out forwards;
+  animation: particlePop 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes particlePop {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--tx), var(--ty)) scale(0);
-    opacity: 0;
-  }
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
 }
 
 /* ── 6. 3D PROFILE CARD STYLING ─────────────────────────── */
@@ -289,14 +277,14 @@ body {
 /* ── 8. FLIP CARDS (DETAILED CASE STUDIES) ───────────────── */
 .flip-card {
   perspective: 1000px;
-  cursor: pointer;
+  cursor: none;
 }
 
 .flip-inner {
   position: relative;
   width: 100%;
   min-height: 400px;
-  transition: transform 0.8s var(--ease-spring);
+  transition: transform 0.9s var(--ease-spring);
   transform-style: preserve-3d;
 }
 
@@ -334,7 +322,7 @@ body {
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s var(--ease-fluid), transform 0.9s var(--ease-fluid);
+  transition: opacity 1s var(--ease-fluid), transform 1s var(--ease-fluid);
 }
 
 .reveal-up.visible {
