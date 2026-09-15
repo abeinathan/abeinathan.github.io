@@ -1,14 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
    ABEI NATHAN — FLUID INTERACTIVE ENGINE (components_new.js)
-   Features:
-   1. Dynamic Custom Dual-Cursor (Ring + Dot with LERP fluid inertia)
-   2. Ultra-Fluid Spring Physics Dot Scatter Canvas
-   3. Magnetic Button Hover (Proximity Attraction Physics)
-   4. Weight-Hover Variable Font Fluid Morphing
-   5. Ripple & Multi-Particle Burst Click Engine
-   6. 3D Parallax Tilt Cards with Dynamic Lighting
-   7. Text Pressure Fluid Character Scaling
-   8. Line Sidebar Scroll Observer & Mobile Navigation Drawer
    ═══════════════════════════════════════════════════════════ */
 
 (function () {
@@ -16,7 +7,7 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // LERP Helper Function for Fluid Motion
+  // LERP Helper Function for buttery fluid motion
   function lerp(start, end, factor) {
     return start + (end - start) * factor;
   }
@@ -42,8 +33,8 @@
       mouse.y = e.clientY;
     });
 
-    // Hover state expanding ring on interactive elements
     var interactiveSelectors = 'a, button, .click-effect, .feature-card, .flip-card, .magic-bento-card, .weight-hover';
+    
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(interactiveSelectors)) {
         ring.classList.add('cursor-hover');
@@ -59,12 +50,11 @@
     });
 
     function renderCursor() {
-      // Immediate dot placement, smooth trailing ring lerp
-      dotPos.x = lerp(dotPos.x, mouse.x, 0.4);
-      dotPos.y = lerp(dotPos.y, mouse.y, 0.4);
+      dotPos.x = lerp(dotPos.x, mouse.x, 0.35);
+      dotPos.y = lerp(dotPos.y, mouse.y, 0.35);
 
-      ringPos.x = lerp(ringPos.x, mouse.x, 0.15);
-      ringPos.y = lerp(ringPos.y, mouse.y, 0.15);
+      ringPos.x = lerp(ringPos.x, mouse.x, 0.12);
+      ringPos.y = lerp(ringPos.y, mouse.y, 0.12);
 
       dot.style.transform = 'translate3d(' + dotPos.x + 'px, ' + dotPos.y + 'px, 0)';
       ring.style.transform = 'translate3d(' + ringPos.x + 'px, ' + ringPos.y + 'px, 0)';
@@ -92,10 +82,10 @@
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var dots = [];
     var size = { w: 0, h: 0 };
-    var mouse = { x: -9999, y: -9999, radius: 180, strength: 55 };
+    var mouse = { x: -9999, y: -9999, radius: 200, strength: 60 };
 
     function buildDots(w, h) {
-      var step = 20;
+      var step = 22;
       var cols = Math.floor(w / step);
       var rows = Math.floor(h / step);
       var padX = (w % step) / 2;
@@ -107,12 +97,8 @@
           var ax = padX + c * step + step / 2;
           var ay = padY + r * step + step / 2;
           dots.push({
-            ax: ax, ay: ay,
-            x: ax, y: ay,
-            vx: 0, vy: 0,
-            baseRadius: 1.5,
-            radius: 1.5,
-            targetRadius: 1.5
+            ax: ax, ay: ay, x: ax, y: ay, vx: 0, vy: 0,
+            baseRadius: 1.2, radius: 1.2, targetRadius: 1.2
           });
         }
       }
@@ -153,23 +139,22 @@
         var dy = mouse.y - d.ay;
         var dist = Math.sqrt(dx * dx + dy * dy);
 
-        // Fluid spring repulsion
         if (dist < mouse.radius && dist > 0) {
           var force = (1 - dist / mouse.radius) * mouse.strength;
           var angle = Math.atan2(dy, dx);
           var tx = d.ax - Math.cos(angle) * force;
           var ty = d.ay - Math.sin(angle) * force;
-          d.vx += (tx - d.x) * 0.12;
-          d.vy += (ty - d.y) * 0.12;
-          d.targetRadius = 1.5 + (1 - dist / mouse.radius) * 2.5;
+          d.vx += (tx - d.x) * 0.08;
+          d.vy += (ty - d.y) * 0.08;
+          d.targetRadius = 1.2 + (1 - dist / mouse.radius) * 3;
         } else {
-          d.vx += (d.ax - d.x) * 0.06;
-          d.vy += (d.ay - d.y) * 0.06;
+          d.vx += (d.ax - d.x) * 0.04;
+          d.vy += (d.ay - d.y) * 0.04;
           d.targetRadius = d.baseRadius;
         }
 
-        d.vx *= 0.85;
-        d.vy *= 0.85;
+        d.vx *= 0.88;
+        d.vy *= 0.88;
         d.x += d.vx;
         d.y += d.vy;
         d.radius = lerp(d.radius, d.targetRadius, 0.15);
@@ -178,10 +163,10 @@
         ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
 
         if (dist < mouse.radius) {
-          var alpha = 0.25 + (1 - dist / mouse.radius) * 0.7;
-          ctx.fillStyle = 'rgba(163, 230, 53, ' + alpha + ')'; // Fluid Lime
+          var alpha = 0.2 + (1 - dist / mouse.radius) * 0.8;
+          ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
         } else {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
         }
         ctx.fill();
       }
@@ -191,27 +176,45 @@
     render();
   }
 
-  /* ── 3. MAGNETIC BUTTON HOVER PHYSICS ───────────────────── */
+  /* ── 3. MAGNETIC BUTTON HOVER PHYSICS (LERP OVERHAUL) ──────── */
   function initMagneticButtons() {
     if (reduceMotion) return;
-    var elements = document.querySelectorAll('.btn-magnetic, .nav-item-link, .btn-primary, .btn-ghost');
+    var elements = document.querySelectorAll('.btn-magnetic, .nav-item-link');
 
     elements.forEach(function (el) {
-      var bounding = el.getBoundingClientRect();
+      var targetX = 0, targetY = 0;
+      var currentX = 0, currentY = 0;
+      var isHovering = false, animating = false;
 
       el.addEventListener('mousemove', function (e) {
         var rect = el.getBoundingClientRect();
-        var x = e.clientX - (rect.left + rect.width / 2);
-        var y = e.clientY - (rect.top + rect.height / 2);
+        targetX = (e.clientX - (rect.left + rect.width / 2)) * 0.3;
+        targetY = (e.clientY - (rect.top + rect.height / 2)) * 0.3;
+      });
 
-        el.style.transform = 'translate3d(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px, 0) scale(1.04)';
-        el.style.transition = 'transform 0.1s ease-out';
+      el.addEventListener('mouseenter', function () {
+        isHovering = true;
+        if (!animating) { animating = true; requestAnimationFrame(updateButton); }
       });
 
       el.addEventListener('mouseleave', function () {
-        el.style.transform = 'translate3d(0, 0, 0) scale(1)';
-        el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        isHovering = false;
+        targetX = 0; targetY = 0;
       });
+
+      function updateButton() {
+        currentX = lerp(currentX, targetX, 0.12);
+        currentY = lerp(currentY, targetY, 0.12);
+
+        el.style.transform = 'translate3d(' + currentX + 'px, ' + currentY + 'px, 0) scale(' + (isHovering ? 1.05 : 1) + ')';
+
+        if (isHovering || Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01) {
+          requestAnimationFrame(updateButton);
+        } else {
+          animating = false;
+          el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        }
+      }
     });
   }
 
@@ -221,13 +224,11 @@
     var targets = document.querySelectorAll('.weight-hover');
 
     targets.forEach(function (el) {
-      el.style.transition = 'font-weight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, letter-spacing 0.3s ease';
-
+      el.style.transition = 'font-weight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease, letter-spacing 0.3s ease';
       el.addEventListener('mouseenter', function () {
         this.style.fontWeight = '800';
         this.style.letterSpacing = '0.02em';
       });
-
       el.addEventListener('mouseleave', function () {
         this.style.fontWeight = '';
         this.style.letterSpacing = '';
@@ -243,56 +244,83 @@
       var target = e.target.closest('.click-effect, a, button, .feature-card, .flip-card');
       if (!target) return;
 
-      var x = e.clientX;
-      var y = e.clientY;
-
-      // Particle explosion
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < 12; i++) {
         var p = document.createElement('div');
         p.className = 'fluid-particle';
         document.body.appendChild(p);
 
-        var angle = (Math.PI * 2 / 10) * i + (Math.random() * 0.5 - 0.25);
-        var speed = 35 + Math.random() * 45;
+        var angle = (Math.PI * 2 / 12) * i + (Math.random() * 0.5 - 0.25);
+        var speed = 40 + Math.random() * 50;
         var tx = Math.cos(angle) * speed;
         var ty = Math.sin(angle) * speed;
 
-        p.style.left = x + 'px';
-        p.style.top = y + 'px';
+        p.style.left = e.clientX + 'px';
+        p.style.top = e.clientY + 'px';
         p.style.setProperty('--tx', tx + 'px');
         p.style.setProperty('--ty', ty + 'px');
 
-        setTimeout((function (el) {
-          return function () { el.remove(); };
-        })(p), 550);
+        setTimeout((function (el) { return function () { el.remove(); }; })(p), 600);
       }
     });
   }
 
-  /* ── 6. 3D PARALLAX TILT CARDS ───────────────────────────── */
+  /* ── 6. 3D PARALLAX TILT CARDS (LERP OVERHAUL) ────────────── */
   function init3DParallaxCards() {
     if (reduceMotion) return;
     var cards = document.querySelectorAll('.feature-card, .magic-bento-card, .profile-card-3d');
 
     cards.forEach(function (card) {
+      var targetX = 0, targetY = 0, targetLift = 0;
+      var currentX = 0, currentY = 0, currentLift = 0;
+      var mouseX = 0, mouseY = 0, currentMouseX = 0, currentMouseY = 0;
+      var isHovering = false, animating = false;
+
       card.addEventListener('mousemove', function (e) {
         var rect = card.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
         var centerX = rect.width / 2;
         var centerY = rect.height / 2;
-        var rotateX = (y - centerY) / 15;
-        var rotateY = (centerX - x) / 15;
+        
+        targetX = (mouseY - centerY) / 25; 
+        targetY = (centerX - mouseX) / 25;
+      });
 
-        card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-6px)';
-        card.style.setProperty('--mouse-x', x + 'px');
-        card.style.setProperty('--mouse-y', y + 'px');
+      card.addEventListener('mouseenter', function (e) {
+        isHovering = true;
+        targetLift = -8; 
+        var rect = card.getBoundingClientRect();
+        mouseX = currentMouseX = e.clientX - rect.left;
+        mouseY = currentMouseY = e.clientY - rect.top;
+        if (!animating) {
+          animating = true;
+          requestAnimationFrame(updateCard);
+        }
       });
 
       card.addEventListener('mouseleave', function () {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        isHovering = false;
+        targetX = 0; targetY = 0; targetLift = 0;
       });
+
+      function updateCard() {
+        currentX = lerp(currentX, targetX, 0.08);
+        currentY = lerp(currentY, targetY, 0.08);
+        currentLift = lerp(currentLift, targetLift, 0.08);
+        currentMouseX = lerp(currentMouseX, mouseX, 0.15);
+        currentMouseY = lerp(currentMouseY, mouseY, 0.15);
+
+        card.style.transform = 'perspective(1000px) rotateX(' + currentX + 'deg) rotateY(' + currentY + 'deg) translateY(' + currentLift + 'px)';
+        card.style.setProperty('--mouse-x', currentMouseX + 'px');
+        card.style.setProperty('--mouse-y', currentMouseY + 'px');
+
+        if (isHovering || Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01 || Math.abs(currentLift) > 0.01) {
+          requestAnimationFrame(updateCard);
+        } else {
+          animating = false;
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        }
+      }
     });
   }
 
@@ -342,7 +370,7 @@
             '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">' +
             '<rect width="600" height="600" fill="#0b0d14"/>' +
             '<circle cx="300" cy="270" r="140" fill="#1e2436"/>' +
-            '<text x="300" y="315" font-family="Syne, sans-serif" font-size="130" font-weight="800" fill="#a3e635" text-anchor="middle">AN</text>' +
+            '<text x="300" y="315" font-family="Syne, sans-serif" font-size="130" font-weight="800" fill="#ffffff" text-anchor="middle">AN</text>' +
             '</svg>'
           ) + '" alt="Abei Nathan S K" class="profile-avatar-img">' +
         '</div>' +
@@ -370,7 +398,6 @@
     initProfileCard(document.getElementById('profileCardMount'));
     initTextPressure(document.getElementById('textPressureMount'), 'DATA · STRATEGY · IMPACT');
 
-    // Mobile Navbar Menu Toggle
     var menuBtn = document.getElementById('mobileMenuBtn');
     var mobileDropdown = document.getElementById('mobileDropdown');
     if (menuBtn && mobileDropdown) {
@@ -382,7 +409,6 @@
       });
     }
 
-    // Flip Card Click Handler
     document.querySelectorAll('.flip-card').forEach(function (card) {
       card.addEventListener('click', function (e) {
         if (!e.target.closest('a')) {
