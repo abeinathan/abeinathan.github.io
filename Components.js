@@ -15,7 +15,6 @@
   function initFluidCursor() {
     if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
 
-    // Apply fail-safe hide default cursor class 
     document.body.classList.add('no-cursor');
 
     var dot = document.createElement('div');
@@ -35,7 +34,7 @@
       mouse.y = e.clientY;
     });
 
-    var interactiveSelectors = 'a, button, .click-effect, .feature-card, .flip-card, .magic-bento-card, .weight-hover';
+    var interactiveSelectors = 'a, button, .click-effect, .feature-card, .flip-card, .magic-bento-card, .weight-hover, .experience-card';
     
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(interactiveSelectors)) {
@@ -326,7 +325,21 @@
     });
   }
 
-  /* ── 7. TEXT PRESSURE FLUID MORPHING ─────────────────────── */
+  /* ── 7. RADIAL GLOW TRACKING FOR NON-TILTING CARDS ──────── */
+  function initGlowTracking() {
+    if (reduceMotion) return;
+    var cards = document.querySelectorAll('.flip-card, .experience-card');
+    
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+  }
+
+  /* ── 8. TEXT PRESSURE FLUID MORPHING ─────────────────────── */
   function initTextPressure() {
     if (reduceMotion) return;
     var spans = document.querySelectorAll('#textPressureTitle span');
@@ -355,10 +368,15 @@
   document.addEventListener('DOMContentLoaded', function () {
     initFluidCursor();
     initFluidDotScatter(document.getElementById('dotFieldMount'));
+    
+    // Injecting the secondary dot scatter into the footer canvas
+    initFluidDotScatter(document.getElementById('footerDotFieldMount'));
+    
     initMagneticButtons();
     initWeightHover();
     initFluidClickEffects();
     init3DParallaxCards();
+    initGlowTracking();
     initTextPressure();
 
     var menuBtn = document.getElementById('mobileMenuBtn');
