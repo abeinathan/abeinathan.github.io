@@ -74,14 +74,10 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         FLOATING GLASS PILL NAVBAR (DESIGN 1 INTEGRATION)
-         ═══════════════════════════════════════════════════════════ -->
     <nav class="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center">
       <div class="max-w-4xl w-full rounded-full py-3 px-6 glass-pill-nav">
         <div class="flex items-center justify-between">
           
-          <!-- Logo / Brand -->
           <div class="flex items-center gap-2.5">
             <span class="w-3 h-3 rounded-full bg-lime-400 animate-pulse shadow-[0_0_12px_#a3e635]"></span>
             <span class="text-base md:text-lg font-extrabold tracking-tight text-white font-syne weight-hover">
@@ -89,7 +85,6 @@
             </span>
           </div>
 
-          <!-- Desktop Navigation -->
           <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/70">
             <li><a href="#hero" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Home</a></li>
             <li><a href="#stack" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Stack</a></li>
@@ -99,7 +94,6 @@
             <li><a href="#contact" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Contact</a></li>
           </ul>
 
-          <!-- Action Button / Mobile Menu -->
           <div class="flex items-center gap-2">
             <a href="AbeiNathanSK_resume.pdf" target="_blank" class="hidden md:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-white/10 hover:bg-lime-400 hover:text-black rounded-full transition-all duration-300 border border-white/10 btn-magnetic">
               <span>Resume</span>
@@ -116,7 +110,6 @@
           </div>
         </div>
 
-        <!-- Mobile Drawer Menu -->
         <div id="mobileDropdown" class="hidden md:hidden pt-4 pb-2 border-t border-white/10 mt-3 flex flex-col gap-2">
           <a href="#hero" class="px-4 py-2 rounded-lg text-sm text-white/80 hover:bg-white/10 transition">Home</a>
           <a href="#stack" class="px-4 py-2 rounded-lg text-sm text-white/80 hover:bg-white/10 transition">Stack</a>
@@ -132,17 +125,12 @@
       </div>
     </nav>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         HERO SECTION WITH FLUID DOT SCATTER & 3D PARALLAX
-         ═══════════════════════════════════════════════════════════ -->
     <header id="hero" class="relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden min-h-screen flex items-center">
-        <!-- Interactive Dot Field Scatter Canvas -->
         <div id="dotFieldMount" class="absolute inset-0 z-0 pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Left Hero Content -->
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-400/30 bg-lime-400/10 text-lime-400 text-xs font-semibold tracking-wide reveal-up">
                         <span class="w-2 h-2 rounded-full bg-lime-400 animate-ping"></span>
@@ -159,7 +147,6 @@
                         Specializing in Business Analytics at SRMIST (2026). I build predictive revenue engines, time-series equity forecasting algorithms, and sentiment NLP pipelines that convert raw enterprise data into measurable growth.
                     </p>
 
-                    <!-- Magnetic Hero Buttons -->
                     <div class="flex flex-wrap items-center gap-4 pt-2 reveal-up">
                         <a href="#projects" class="btn-magnetic inline-flex items-center gap-2 px-7 py-4 rounded-full bg-lime-400 text-black font-extrabold text-sm hover:bg-lime-300 transition-all shadow-[0_10px_35px_rgba(163,230,53,0.35)] click-effect">
                             <span>View Case Studies</span>
@@ -170,10 +157,9 @@
                         </a>
                     </div>
 
-                    <!-- Key Stats Bar -->
                     <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg reveal-up">
                         <div>
-                            <div class="text-2xl md:text-3xl font-extrabold text-white font-syne weight-hover">9.26</div>
+                            <div class="text-2xl md:text-3xl font-extrabold text-white font-syne weight-hover">9.21</div>
                             <div class="text-xs text-slate-400 font-geist">CGPA · MBA Analytics</div>
                         </div>
                         <div>
@@ -187,7 +173,6 @@
                     </div>
                 </div>
 
-                <!-- Right Profile Card Mount -->
                 <div class="lg:col-span-5 flex justify-center reveal-up">
                     <div id="profileCardMount" class="w-full flex justify-center"></div>
                 </div>
@@ -196,16 +181,10 @@
         </div>
     </header>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         TAGLINE / PRESSURE TYPOGRAPHY STRIP
-         ═══════════════════════════════════════════════════════════ -->
     <section class="border-y border-white/10 bg-white/[0.015] relative z-10 overflow-hidden">
         <div id="textPressureMount" class="py-8 flex justify-center items-center"></div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         MAGIC BENTO GRID SKILLS SECTION
-         ═══════════════════════════════════════════════════════════ -->
     <section id="stack" class="py-28 relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -215,37 +194,31 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Bento 1 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Core Languages</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">Python &amp; SQL</h3>
                     <p class="text-xs text-slate-400 font-geist">Pandas, NumPy, Scikit-learn, Complex SQL window functions, and continuous ETL routines.</p>
                 </div>
-                <!-- Bento 2 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Visualization &amp; BI</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">Power BI &amp; Tableau</h3>
                     <p class="text-xs text-slate-400 font-geist">Interactive executive dashboards, DAX formulas, Matplotlib, Seaborn &amp; storyboards.</p>
                 </div>
-                <!-- Bento 3 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Predictive Modeling</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">Machine Learning</h3>
                     <p class="text-xs text-slate-400 font-geist">Random Forest, XGBoost, SHAP explainability, Time-Series Prophet &amp; Bayesian risk paths.</p>
                 </div>
-                <!-- Bento 4 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">NLP Pipelines</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">VADER &amp; TextBlob</h3>
                     <p class="text-xs text-slate-400 font-geist">Voice-of-Customer processing, weighted sentiment scoring &amp; Streamlit cloud deployments.</p>
                 </div>
-                <!-- Bento 5 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Storage &amp; DB</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">PostgreSQL &amp; Excel</h3>
                     <p class="text-xs text-slate-400 font-geist">Relational database schemas, indexed querying, advanced Excel modeling &amp; VBA scripts.</p>
                 </div>
-                <!-- Bento 6 -->
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Domain Strategy</div>
                     <h3 class="text-xl font-bold text-white font-syne weight-hover mb-1">Business Analytics</h3>
@@ -255,9 +228,6 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         FEATURE CARD SHOWCASE SECTION (DESIGN 2 INTEGRATION)
-         ═══════════════════════════════════════════════════════════ -->
     <section id="highlights" class="py-28 bg-white/[0.01] border-y border-white/10 relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -266,10 +236,8 @@
                 <p class="text-slate-400 text-sm font-geist mt-1">High-impact analytics frameworks deployed to solve core business problems.</p>
             </div>
 
-            <!-- Feature Card 3-Column Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               
-              <!-- Feature Card 1 -->
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="B2C Revenue at risk analytics" class="h-full w-full object-cover img-zoom">
@@ -289,7 +257,6 @@
                 </div>
               </div>
 
-              <!-- Feature Card 2 -->
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Equity time series forecasting" class="h-full w-full object-cover img-zoom">
@@ -309,7 +276,6 @@
                 </div>
               </div>
 
-              <!-- Feature Card 3 -->
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="NLP Sentiment Analytics" class="h-full w-full object-cover img-zoom">
@@ -333,9 +299,6 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         FLIP CASE STUDIES SECTION
-         ═══════════════════════════════════════════════════════════ -->
     <section id="projects" class="py-28 relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -345,8 +308,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Flip 1 -->
+                
                 <div class="flip-card reveal-up">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -387,7 +349,6 @@
                     </div>
                 </div>
 
-                <!-- Flip 2 -->
                 <div class="flip-card reveal-up">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -428,7 +389,6 @@
                     </div>
                 </div>
 
-                <!-- Flip 3 -->
                 <div class="flip-card reveal-up">
                     <div class="flip-inner">
                         <div class="flip-front">
@@ -473,9 +433,6 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CAREER EXPERIENCE TIMELINE
-         ═══════════════════════════════════════════════════════════ -->
     <section id="experience" class="py-28 bg-white/[0.01] border-t border-white/10 relative z-10">
         <div class="max-w-4xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -485,7 +442,6 @@
 
             <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-white/10">
                 
-                <!-- Item 1 -->
                 <div class="relative pl-10 group reveal-up">
                     <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
                         <i class="fas fa-industry"></i>
@@ -498,7 +454,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="relative pl-10 group reveal-up">
                     <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
                         <i class="fas fa-university"></i>
@@ -511,7 +466,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="relative pl-10 group reveal-up">
                     <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
                         <i class="fas fa-layer-group"></i>
@@ -528,9 +482,6 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CONTACT FOOTER
-         ═══════════════════════════════════════════════════════════ -->
     <footer id="contact" class="py-28 border-t border-white/10 relative z-10">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-400/30 bg-lime-400/10 text-lime-400 text-xs font-semibold mb-6 reveal-up">
@@ -573,7 +524,6 @@
         </div>
     </footer>
 
-    <!-- Reveal Observer Script -->
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const observer = new IntersectionObserver((entries) => {
@@ -591,7 +541,6 @@
       });
     </script>
 
-    <!-- Component Logic -->
     <script src="components_new.js" defer></script>
 </body>
 </html>
