@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abei Nathan S K | Ultra-Fluid Data Analyst Portfolio</title>
 
-    <!-- SEO & Metadata -->
     <meta name="description" content="Abei Nathan S K — Data Analyst & MBA candidate specializing in Business Analytics. Portfolio featuring churn prediction engines, equity risk forecasting, and NLP sentiment analysis pipelines.">
     <meta name="author" content="Abei Nathan S K">
     <link rel="canonical" href="https://abeinathan.github.io/">
 
-    <!-- Open Graph for LinkedIn / WhatsApp / Twitter -->
     <meta property="og:title" content="Abei Nathan S K | Data Analyst Portfolio">
     <meta property="og:description" content="Data Analyst & MBA candidate specializing in Business Analytics. Featured projects in Python, SQL, Power BI, and Tableau.">
     <meta property="og:url" content="https://abeinathan.github.io/">
     <meta property="og:type" content="website">
 
-    <!-- Structured JSON-LD Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -27,17 +24,10 @@
       "sameAs": [
         "https://linkedin.com/in/abeinathan",
         "https://github.com/abeinathan"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chennai",
-        "addressRegion": "Tamil Nadu",
-        "addressCountry": "IN"
-      }
+      ]
     }
     </script>
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -56,39 +46,37 @@
       }
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap" rel="stylesheet">
-
-    <!-- Custom Fluid Design System Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#080a10] text-slate-100 antialiased selection:bg-lime-400 selection:text-black min-h-screen relative">
 
-    <!-- Liquid Background Noise Overlay & Morphing Blobs -->
     <div class="noise-overlay"></div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
+    <!-- NAVBAR: Width expanded to 5xl to allow breathing room -->
     <nav class="fixed top-5 left-0 right-0 z-[999] px-4 flex justify-center">
-      <div class="max-w-4xl w-full rounded-full py-3 px-6 glass-pill-nav">
+      <div class="max-w-5xl w-full rounded-full py-3 px-6 glass-pill-nav">
         <div class="flex items-center justify-between">
           
           <div class="flex items-center gap-2.5">
             <span class="w-3 h-3 rounded-full bg-lime-400 animate-pulse shadow-[0_0_12px_#a3e635]"></span>
-            <span class="text-base md:text-lg font-extrabold tracking-tight text-white font-syne weight-hover">
+            <!-- TITLE: whitespace-nowrap added below -->
+            <span class="text-base md:text-lg font-extrabold tracking-tight whitespace-nowrap text-white font-syne weight-hover">
               Abei Nathan S K
             </span>
           </div>
 
-          <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/70">
-            <li><a href="#hero" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Home</a></li>
-            <li><a href="#stack" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Stack</a></li>
-            <li><a href="#highlights" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Highlights</a></li>
-            <li><a href="#projects" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Projects</a></li>
-            <li><a href="#experience" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Experience</a></li>
-            <li><a href="#contact" class="nav-item-link rounded-full py-2 px-4 transition-all weight-hover">Contact</a></li>
+          <ul class="hidden md:flex items-center gap-1.5 text-sm font-medium text-white/70">
+            <li><a href="#hero" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Home</a></li>
+            <li><a href="#stack" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Stack</a></li>
+            <li><a href="#highlights" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Highlights</a></li>
+            <li><a href="#projects" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Projects</a></li>
+            <li><a href="#experience" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Experience</a></li>
+            <li><a href="#contact" class="nav-item-link rounded-full py-2 px-3 transition-all weight-hover">Contact</a></li>
           </ul>
 
           <div class="flex items-center gap-2">
@@ -98,11 +86,7 @@
             </a>
 
             <button class="inline-flex md:hidden p-2 rounded-full transition-all border border-white/10 hover:bg-white/10 text-white/80" id="mobileMenuBtn" aria-label="Toggle Menu">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="6" x2="20" y2="6"></line>
-                <line x1="4" y1="12" x2="20" y2="12"></line>
-                <line x1="4" y1="18" x2="20" y2="18"></line>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
             </button>
           </div>
         </div>
@@ -127,23 +111,19 @@
 
         <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-400/30 bg-lime-400/10 text-lime-400 text-xs font-semibold tracking-wide reveal-up">
                         <span class="w-2 h-2 rounded-full bg-lime-400 animate-ping"></span>
                         Immediate Joining · Chennai · Bengaluru · Coimbatore
                     </div>
-
                     <h1 class="text-4xl md:text-6xl font-extrabold font-syne tracking-tight leading-none text-white reveal-up">
                         <span class="block weight-hover">Data Analyst</span>
                         <span class="text-lime-400 font-serif italic text-3xl md:text-5xl">&amp;</span> 
                         <span class="block text-slate-300 weight-hover">MBA Candidate</span>
                     </h1>
-
                     <p class="text-base md:text-lg text-slate-400 font-geist max-w-xl leading-relaxed reveal-up">
                         Specializing in Business Analytics at SRMIST (2026). I build predictive revenue engines, time-series equity forecasting algorithms, and sentiment NLP pipelines that convert raw enterprise data into measurable growth.
                     </p>
-
                     <div class="flex flex-wrap items-center gap-4 pt-2 reveal-up">
                         <a href="#projects" class="btn-magnetic inline-flex items-center gap-2 px-7 py-4 rounded-full bg-lime-400 text-black font-extrabold text-sm hover:bg-lime-300 transition-all shadow-[0_10px_35px_rgba(163,230,53,0.35)] click-effect">
                             <span>View Case Studies</span>
@@ -153,7 +133,6 @@
                             <span>Get in Touch</span>
                         </a>
                     </div>
-
                     <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg reveal-up">
                         <div>
                             <div class="text-2xl md:text-3xl font-extrabold text-white font-syne weight-hover">9.21</div>
@@ -190,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
@@ -203,6 +181,7 @@
         </div>
     </section>
 
+    <!-- Sections 1 and 2 remain unmodified here as they were already perfect -->
     <section id="stack" class="py-28 relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -210,7 +189,6 @@
                 <h2 class="text-3xl md:text-4xl font-bold font-syne text-white mt-1">Tools &amp; Infrastructure</h2>
                 <p class="text-slate-400 text-sm font-geist mt-1">Cursor-tracked radial lighting on interactive bento cards.</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="magic-bento-card reveal-up">
                     <div class="text-xs uppercase tracking-widest text-lime-400 font-bold mb-2">Core Languages</div>
@@ -253,9 +231,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold font-syne text-white mt-1">Engineered Analytics Systems</h2>
                 <p class="text-slate-400 text-sm font-geist mt-1">High-impact analytics frameworks deployed to solve core business problems.</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="B2C Revenue at risk analytics" class="h-full w-full object-cover img-zoom">
@@ -274,7 +250,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Equity time series forecasting" class="h-full w-full object-cover img-zoom">
@@ -293,7 +268,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="feature-card group click-effect reveal-up">
                 <div class="aspect-[16/9] overflow-hidden relative">
                   <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="NLP Sentiment Analytics" class="h-full w-full object-cover img-zoom">
@@ -312,11 +286,11 @@
                   </div>
                 </div>
               </div>
-
             </div>
         </div>
     </section>
 
+    <!-- SECTION 3: Deep Case Studies (Now with glow tracking and float translation) -->
     <section id="projects" class="py-28 relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -339,7 +313,7 @@
                                 <span class="text-xs text-slate-400 block mt-1">Predictive Retention Strategy</span>
                                 <p class="text-sm text-slate-400 mt-3 font-geist">Engineered Random Forest classifier multiplying churn probability by user LTV to mitigate high-dollar churn risks.</p>
                             </div>
-                            <div class="mt-6">
+                            <div class="mt-6 relative z-20">
                                 <div class="flex flex-wrap gap-2 mb-4 text-xs text-slate-300">
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">Scikit-Learn</span>
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">SHAP</span>
@@ -361,7 +335,7 @@
                                     <li><strong>SHAP TreeExplainer</strong> — Extracted feature transparency for leadership.</li>
                                 </ul>
                             </div>
-                            <div class="mt-6 flex gap-2">
+                            <div class="mt-6 flex gap-2 relative z-20">
                                 <a href="https://public.tableau.com/app/profile/abei.nathan.s.k/viz/Customer_Churn_Revenue_Risk_Engine/MRRProtectionEnginePredictiveChurnRevenue-at-RiskCommandCenter" target="_blank" class="px-4 py-2 rounded-full bg-lime-400 text-black text-xs font-bold hover:bg-lime-300 transition">Dashboard</a>
                                 <a href="https://github.com/abeinathan/revenue_risk_churn_engine" target="_blank" class="px-4 py-2 rounded-full bg-white/10 text-white text-xs font-semibold border border-white/10 hover:bg-white/20 transition">GitHub Repo</a>
                             </div>
@@ -381,7 +355,7 @@
                                 <span class="text-xs text-slate-400 block mt-1">Bayesian Risk Analytics</span>
                                 <p class="text-sm text-slate-400 mt-3 font-geist">Parallel Python ETL ingestion into PostgreSQL mapping Bayesian time-series trajectory paths across 90-day windows.</p>
                             </div>
-                            <div class="mt-6">
+                            <div class="mt-6 relative z-20">
                                 <div class="flex flex-wrap gap-2 mb-4 text-xs text-slate-300">
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">Prophet</span>
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">PostgreSQL</span>
@@ -403,7 +377,7 @@
                                     <li><strong>Python ETL</strong> — Continuous automated ingestion routines.</li>
                                 </ul>
                             </div>
-                            <div class="mt-6 flex gap-2">
+                            <div class="mt-6 flex gap-2 relative z-20">
                                 <a href="https://public.tableau.com/app/profile/abei.nathan1154/viz/NIFTY50PredictiveEquityRiskAnalytics/NIFTY50PredictiveEquityRiskAnalytics" target="_blank" class="px-4 py-2 rounded-full bg-lime-400 text-black text-xs font-bold hover:bg-lime-300 transition">Dashboard</a>
                                 <a href="https://github.com/abeinathan/nifty50_predictive_engine" target="_blank" class="px-4 py-2 rounded-full bg-white/10 text-white text-xs font-semibold border border-white/10 hover:bg-white/20 transition">GitHub Repo</a>
                             </div>
@@ -423,7 +397,7 @@
                                 <span class="text-xs text-slate-400 block mt-1">NLP &amp; Voice of Customer</span>
                                 <p class="text-sm text-slate-400 mt-3 font-geist">Translating natural language comments into weighted product feature improvement roadmaps using VADER and Streamlit.</p>
                             </div>
-                            <div class="mt-6">
+                            <div class="mt-6 relative z-20">
                                 <div class="flex flex-wrap gap-2 mb-4 text-xs text-slate-300">
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">Streamlit</span>
                                     <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">VADER</span>
@@ -445,7 +419,7 @@
                                     <li><strong>GitHub Actions</strong> — Automated active instance cron maintenance.</li>
                                 </ul>
                             </div>
-                            <div class="mt-6 flex gap-2">
+                            <div class="mt-6 flex gap-2 relative z-20">
                                 <a href="https://abei-sentimentanalysis.streamlit.app/" target="_blank" class="px-4 py-2 rounded-full bg-lime-400 text-black text-xs font-bold hover:bg-lime-300 transition">Live Demo</a>
                                 <a href="https://github.com/abeinathan/youtube-sentiment-analysis" target="_blank" class="px-4 py-2 rounded-full bg-white/10 text-white text-xs font-semibold border border-white/10 hover:bg-white/20 transition">GitHub Repo</a>
                             </div>
@@ -457,6 +431,7 @@
         </div>
     </section>
 
+    <!-- SECTION 4: Experience (Now with 'experience-card' floating interaction) -->
     <section id="experience" class="py-28 bg-white/[0.01] border-t border-white/10 relative z-10">
         <div class="max-w-4xl mx-auto px-6">
             <div class="mb-14 reveal-up">
@@ -466,11 +441,11 @@
 
             <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-white/10">
                 
-                <div class="relative pl-10 group reveal-up">
-                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
+                <div class="relative pl-10 reveal-up experience-card">
+                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs z-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M12 7V3"/><path d="M16 7V3"/><path d="M8 7V3"/></svg>
                     </span>
-                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-lime-400/40 transition">
+                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 exp-inner">
                         <span class="text-xs font-semibold text-lime-400">Jun 2025 – Aug 2025</span>
                         <h3 class="text-xl font-bold text-white font-syne mt-1">Data Analyst Intern</h3>
                         <div class="text-sm font-medium text-slate-400">Necco Tools</div>
@@ -478,11 +453,11 @@
                     </div>
                 </div>
 
-                <div class="relative pl-10 group reveal-up">
-                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
+                <div class="relative pl-10 reveal-up experience-card">
+                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs z-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M4 15h16"/><path d="M12 3 2 10h20Z"/><path d="M6 10v5"/><path d="M10 10v5"/><path d="M14 10v5"/><path d="M18 10v5"/></svg>
                     </span>
-                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-lime-400/40 transition">
+                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 exp-inner">
                         <span class="text-xs font-semibold text-lime-400">Jan 2025 – Feb 2025</span>
                         <h3 class="text-xl font-bold text-white font-syne mt-1">Campus Ambassador</h3>
                         <div class="text-sm font-medium text-slate-400">IIT Delhi Entrepreneurship Development Cell</div>
@@ -490,11 +465,11 @@
                     </div>
                 </div>
 
-                <div class="relative pl-10 group reveal-up">
-                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs">
+                <div class="relative pl-10 reveal-up experience-card">
+                    <span class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#080a10] border-2 border-lime-400 text-lime-400 flex items-center justify-center text-xs z-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg>
                     </span>
-                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-lime-400/40 transition">
+                    <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 exp-inner">
                         <span class="text-xs font-semibold text-lime-400">Jul 2020</span>
                         <h3 class="text-xl font-bold text-white font-syne mt-1">Management Intern</h3>
                         <div class="text-sm font-medium text-slate-400">Salem Steel Plant (SAIL)</div>
@@ -506,14 +481,19 @@
         </div>
     </section>
 
-    <footer id="contact" class="py-28 border-t border-white/10 relative z-10">
-        <div class="max-w-4xl mx-auto px-6 text-center">
+    <!-- SECTION 5: Footer (Now with fluid dot scatter background and hover-weight text) -->
+    <footer id="contact" class="py-28 border-t border-white/10 relative z-10 overflow-hidden">
+        <!-- New ambient fluid canvas injected behind the footer text -->
+        <div id="footerDotFieldMount" class="absolute inset-0 z-0 pointer-events-none opacity-40"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-400/30 bg-lime-400/10 text-lime-400 text-xs font-semibold mb-6 reveal-up">
                 <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
                 05 · Open to Roles in Chennai, Bengaluru &amp; Coimbatore
             </div>
 
-            <h2 class="text-4xl md:text-5xl font-extrabold font-syne text-white tracking-tight leading-tight reveal-up">
+            <!-- Added weight-hover directly to the large typography -->
+            <h2 class="text-4xl md:text-5xl font-extrabold font-syne text-white tracking-tight leading-tight reveal-up weight-hover cursor-none">
                 Let's Build Something <br>
                 <em class="text-lime-400 font-serif not-italic">Remarkable</em> Together.
             </h2>
