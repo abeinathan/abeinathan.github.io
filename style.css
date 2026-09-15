@@ -34,10 +34,9 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  cursor: auto; /* Fallback to standard cursor if JS is blocked */
+  cursor: auto; 
 }
 
-/* Added by JS if script execution is successful */
 body.no-cursor {
   cursor: none;
 }
@@ -119,7 +118,6 @@ body.no-cursor {
 
 /* ── 3. FLOATING GLASS PILL NAVBAR STYLING ────────────────── */
 .glass-pill-nav {
-  /* Darkened Base Gradient to block text bleeding through */
   background: linear-gradient(180deg, rgba(8,10,16,0.95), rgba(8,10,16,0.85)) padding-box, 
               linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0.08)) border-box;
   border: 1px solid transparent;
@@ -289,9 +287,14 @@ body.no-cursor {
   border-color: rgba(163, 230, 53, 0.35);
 }
 
-/* ── 9. FLIP CARDS (DETAILED CASE STUDIES) ───────────────── */
+/* ── 9. FLIP CARDS (WITH HOVER FLOAT & GLOW) ─────────────── */
 .flip-card {
   perspective: 1000px;
+  transition: transform 0.4s var(--ease-fluid);
+}
+
+.flip-card:hover {
+  transform: translateY(-6px);
 }
 
 .flip-inner {
@@ -319,6 +322,7 @@ body.no-cursor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .flip-front {
@@ -332,7 +336,69 @@ body.no-cursor {
   border-color: rgba(163, 230, 53, 0.4);
 }
 
-/* ── 10. REVEAL SCROLL ANIMATIONS ─────────────────────────── */
+.flip-card:hover .flip-front,
+.flip-card:hover .flip-back {
+  border-color: rgba(163, 230, 53, 0.45);
+  box-shadow: 0 25px 50px -12px rgba(163, 230, 53, 0.15);
+}
+
+.flip-front::before, .flip-back::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(163, 230, 53, 0.12),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 1.75rem;
+}
+
+.flip-card:hover .flip-front::before, 
+.flip-card:hover .flip-back::before {
+  opacity: 1;
+}
+
+/* ── 10. EXPERIENCE CARDS (FLOAT & GLOW INTERACTION) ─────── */
+.experience-card {
+  cursor: none;
+}
+
+.experience-card .exp-inner {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-fluid), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.experience-card:hover .exp-inner {
+  border-color: rgba(163, 230, 53, 0.45);
+  box-shadow: 0 15px 35px -10px rgba(163, 230, 53, 0.15);
+  transform: translateX(8px);
+}
+
+.experience-card .exp-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(163, 230, 53, 0.1),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.experience-card:hover .exp-inner::before {
+  opacity: 1;
+}
+
+
+/* ── 11. REVEAL SCROLL ANIMATIONS ─────────────────────────── */
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
